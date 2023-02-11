@@ -993,9 +993,6 @@
             };
             animate();
         }
-        function utils_getSlideTransformEl(slideEl) {
-            return slideEl.querySelector(".swiper-slide-transform") || slideEl.shadowEl && slideEl.shadowEl.querySelector(".swiper-slide-transform") || slideEl;
-        }
         function utils_elementChildren(element, selector = "") {
             return [ ...element.children ].filter((el => el.matches(selector)));
         }
@@ -1064,14 +1061,6 @@
                 parent = parent.parentElement;
             }
             return parents;
-        }
-        function utils_elementTransitionEnd(el, callback) {
-            function fireCallBack(e) {
-                if (e.target !== el) return;
-                callback.call(el, e);
-                el.removeEventListener("transitionend", fireCallBack);
-            }
-            if (callback) el.addEventListener("transitionend", fireCallBack);
         }
         function elementOuterSize(el, size, includeMargins) {
             const window = ssr_window_esm_getWindow();
@@ -3674,153 +3663,6 @@
             }));
             return params;
         }
-        function Navigation({swiper, extendParams, on, emit}) {
-            extendParams({
-                navigation: {
-                    nextEl: null,
-                    prevEl: null,
-                    hideOnClick: false,
-                    disabledClass: "swiper-button-disabled",
-                    hiddenClass: "swiper-button-hidden",
-                    lockClass: "swiper-button-lock",
-                    navigationDisabledClass: "swiper-navigation-disabled"
-                }
-            });
-            swiper.navigation = {
-                nextEl: null,
-                prevEl: null
-            };
-            const makeElementsArray = el => {
-                if (!Array.isArray(el)) el = [ el ].filter((e => !!e));
-                return el;
-            };
-            function getEl(el) {
-                let res;
-                if (el && "string" === typeof el && swiper.isElement) {
-                    res = swiper.el.shadowRoot.querySelector(el);
-                    if (res) return res;
-                }
-                if (el) {
-                    if ("string" === typeof el) res = [ ...document.querySelectorAll(el) ];
-                    if (swiper.params.uniqueNavElements && "string" === typeof el && res.length > 1 && 1 === swiper.el.querySelectorAll(el).length) res = swiper.el.querySelector(el);
-                }
-                if (el && !res) return el;
-                return res;
-            }
-            function toggleEl(el, disabled) {
-                const params = swiper.params.navigation;
-                el = makeElementsArray(el);
-                el.forEach((subEl => {
-                    if (subEl) {
-                        subEl.classList[disabled ? "add" : "remove"](...params.disabledClass.split(" "));
-                        if ("BUTTON" === subEl.tagName) subEl.disabled = disabled;
-                        if (swiper.params.watchOverflow && swiper.enabled) subEl.classList[swiper.isLocked ? "add" : "remove"](params.lockClass);
-                    }
-                }));
-            }
-            function update() {
-                const {nextEl, prevEl} = swiper.navigation;
-                if (swiper.params.loop) {
-                    toggleEl(prevEl, false);
-                    toggleEl(nextEl, false);
-                    return;
-                }
-                toggleEl(prevEl, swiper.isBeginning && !swiper.params.rewind);
-                toggleEl(nextEl, swiper.isEnd && !swiper.params.rewind);
-            }
-            function onPrevClick(e) {
-                e.preventDefault();
-                if (swiper.isBeginning && !swiper.params.loop && !swiper.params.rewind) return;
-                swiper.slidePrev();
-                emit("navigationPrev");
-            }
-            function onNextClick(e) {
-                e.preventDefault();
-                if (swiper.isEnd && !swiper.params.loop && !swiper.params.rewind) return;
-                swiper.slideNext();
-                emit("navigationNext");
-            }
-            function init() {
-                const params = swiper.params.navigation;
-                swiper.params.navigation = create_element_if_not_defined_createElementIfNotDefined(swiper, swiper.originalParams.navigation, swiper.params.navigation, {
-                    nextEl: "swiper-button-next",
-                    prevEl: "swiper-button-prev"
-                });
-                if (!(params.nextEl || params.prevEl)) return;
-                let nextEl = getEl(params.nextEl);
-                let prevEl = getEl(params.prevEl);
-                Object.assign(swiper.navigation, {
-                    nextEl,
-                    prevEl
-                });
-                nextEl = makeElementsArray(nextEl);
-                prevEl = makeElementsArray(prevEl);
-                const initButton = (el, dir) => {
-                    if (el) el.addEventListener("click", "next" === dir ? onNextClick : onPrevClick);
-                    if (!swiper.enabled && el) el.classList.add(...params.lockClass.split(" "));
-                };
-                nextEl.forEach((el => initButton(el, "next")));
-                prevEl.forEach((el => initButton(el, "prev")));
-            }
-            function destroy() {
-                let {nextEl, prevEl} = swiper.navigation;
-                nextEl = makeElementsArray(nextEl);
-                prevEl = makeElementsArray(prevEl);
-                const destroyButton = (el, dir) => {
-                    el.removeEventListener("click", "next" === dir ? onNextClick : onPrevClick);
-                    el.classList.remove(...swiper.params.navigation.disabledClass.split(" "));
-                };
-                nextEl.forEach((el => destroyButton(el, "next")));
-                prevEl.forEach((el => destroyButton(el, "prev")));
-            }
-            on("init", (() => {
-                if (false === swiper.params.navigation.enabled) disable(); else {
-                    init();
-                    update();
-                }
-            }));
-            on("toEdge fromEdge lock unlock", (() => {
-                update();
-            }));
-            on("destroy", (() => {
-                destroy();
-            }));
-            on("enable disable", (() => {
-                let {nextEl, prevEl} = swiper.navigation;
-                nextEl = makeElementsArray(nextEl);
-                prevEl = makeElementsArray(prevEl);
-                [ ...nextEl, ...prevEl ].filter((el => !!el)).forEach((el => el.classList[swiper.enabled ? "remove" : "add"](swiper.params.navigation.lockClass)));
-            }));
-            on("click", ((_s, e) => {
-                let {nextEl, prevEl} = swiper.navigation;
-                nextEl = makeElementsArray(nextEl);
-                prevEl = makeElementsArray(prevEl);
-                const targetEl = e.target;
-                if (swiper.params.navigation.hideOnClick && !prevEl.includes(targetEl) && !nextEl.includes(targetEl)) {
-                    if (swiper.pagination && swiper.params.pagination && swiper.params.pagination.clickable && (swiper.pagination.el === targetEl || swiper.pagination.el.contains(targetEl))) return;
-                    let isHidden;
-                    if (nextEl.length) isHidden = nextEl[0].classList.contains(swiper.params.navigation.hiddenClass); else if (prevEl.length) isHidden = prevEl[0].classList.contains(swiper.params.navigation.hiddenClass);
-                    if (true === isHidden) emit("navigationShow"); else emit("navigationHide");
-                    [ ...nextEl, ...prevEl ].filter((el => !!el)).forEach((el => el.classList.toggle(swiper.params.navigation.hiddenClass)));
-                }
-            }));
-            const enable = () => {
-                swiper.el.classList.remove(...swiper.params.navigation.navigationDisabledClass.split(" "));
-                init();
-                update();
-            };
-            const disable = () => {
-                swiper.el.classList.add(...swiper.params.navigation.navigationDisabledClass.split(" "));
-                destroy();
-            };
-            Object.assign(swiper.navigation, {
-                enable,
-                disable,
-                update,
-                init,
-                destroy
-            });
-        }
         function classes_to_selector_classesToSelector(classes = "") {
             return `.${classes.trim().replace(/([\.:!\/])/g, "\\$1").replace(/ /g, ".")}`;
         }
@@ -4356,142 +4198,11 @@
                 resume
             });
         }
-        function effect_init_effectInit(params) {
-            const {effect, swiper, on, setTranslate, setTransition, overwriteParams, perspective, recreateShadows, getEffectParams} = params;
-            on("beforeInit", (() => {
-                if (swiper.params.effect !== effect) return;
-                swiper.classNames.push(`${swiper.params.containerModifierClass}${effect}`);
-                if (perspective && perspective()) swiper.classNames.push(`${swiper.params.containerModifierClass}3d`);
-                const overwriteParamsResult = overwriteParams ? overwriteParams() : {};
-                Object.assign(swiper.params, overwriteParamsResult);
-                Object.assign(swiper.originalParams, overwriteParamsResult);
-            }));
-            on("setTranslate", (() => {
-                if (swiper.params.effect !== effect) return;
-                setTranslate();
-            }));
-            on("setTransition", ((_s, duration) => {
-                if (swiper.params.effect !== effect) return;
-                setTransition(duration);
-            }));
-            on("transitionEnd", (() => {
-                if (swiper.params.effect !== effect) return;
-                if (recreateShadows) {
-                    if (!getEffectParams || !getEffectParams().slideShadows) return;
-                    swiper.slides.forEach((slideEl => {
-                        slideEl.querySelectorAll(".swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left").forEach((shadowEl => shadowEl.remove()));
-                    }));
-                    recreateShadows();
-                }
-            }));
-            let requireUpdateOnVirtual;
-            on("virtualUpdate", (() => {
-                if (swiper.params.effect !== effect) return;
-                if (!swiper.slides.length) requireUpdateOnVirtual = true;
-                requestAnimationFrame((() => {
-                    if (requireUpdateOnVirtual && swiper.slides && swiper.slides.length) {
-                        setTranslate();
-                        requireUpdateOnVirtual = false;
-                    }
-                }));
-            }));
-        }
-        function effect_target_effectTarget(effectParams, slideEl) {
-            const transformEl = utils_getSlideTransformEl(slideEl);
-            if (transformEl !== slideEl) {
-                transformEl.style.backfaceVisibility = "hidden";
-                transformEl.style["-webkit-backface-visibility"] = "hidden";
-            }
-            return transformEl;
-        }
-        function effect_virtual_transition_end_effectVirtualTransitionEnd({swiper, duration, transformElements, allSlides}) {
-            const {activeIndex} = swiper;
-            const getSlide = el => {
-                if (!el.parentElement) {
-                    const slide = swiper.slides.filter((slideEl => slideEl.shadowEl && slideEl.shadowEl === el.parentNode))[0];
-                    return slide;
-                }
-                return el.parentElement;
-            };
-            if (swiper.params.virtualTranslate && 0 !== duration) {
-                let eventTriggered = false;
-                let transitionEndTarget;
-                if (allSlides) transitionEndTarget = transformElements; else transitionEndTarget = transformElements.filter((transformEl => {
-                    const el = transformEl.classList.contains("swiper-slide-transform") ? getSlide(transformEl) : transformEl;
-                    return utils_elementIndex(el) === activeIndex;
-                }));
-                transitionEndTarget.forEach((el => {
-                    utils_elementTransitionEnd(el, (() => {
-                        if (eventTriggered) return;
-                        if (!swiper || swiper.destroyed) return;
-                        eventTriggered = true;
-                        swiper.animating = false;
-                        const evt = new window.CustomEvent("transitionend", {
-                            bubbles: true,
-                            cancelable: true
-                        });
-                        swiper.wrapperEl.dispatchEvent(evt);
-                    }));
-                }));
-            }
-        }
-        function EffectFade({swiper, extendParams, on}) {
-            extendParams({
-                fadeEffect: {
-                    crossFade: false
-                }
-            });
-            const setTranslate = () => {
-                const {slides} = swiper;
-                const params = swiper.params.fadeEffect;
-                for (let i = 0; i < slides.length; i += 1) {
-                    const slideEl = swiper.slides[i];
-                    const offset = slideEl.swiperSlideOffset;
-                    let tx = -offset;
-                    if (!swiper.params.virtualTranslate) tx -= swiper.translate;
-                    let ty = 0;
-                    if (!swiper.isHorizontal()) {
-                        ty = tx;
-                        tx = 0;
-                    }
-                    const slideOpacity = swiper.params.fadeEffect.crossFade ? Math.max(1 - Math.abs(slideEl.progress), 0) : 1 + Math.min(Math.max(slideEl.progress, -1), 0);
-                    const targetEl = effect_target_effectTarget(params, slideEl);
-                    targetEl.style.opacity = slideOpacity;
-                    targetEl.style.transform = `translate3d(${tx}px, ${ty}px, 0px)`;
-                }
-            };
-            const setTransition = duration => {
-                const transformElements = swiper.slides.map((slideEl => utils_getSlideTransformEl(slideEl)));
-                transformElements.forEach((el => {
-                    el.style.transitionDuration = `${duration}ms`;
-                }));
-                effect_virtual_transition_end_effectVirtualTransitionEnd({
-                    swiper,
-                    duration,
-                    transformElements,
-                    allSlides: true
-                });
-            };
-            effect_init_effectInit({
-                effect: "fade",
-                swiper,
-                on,
-                setTranslate,
-                setTransition,
-                overwriteParams: () => ({
-                    slidesPerView: 1,
-                    slidesPerGroup: 1,
-                    watchSlidesProgress: true,
-                    spaceBetween: 0,
-                    virtualTranslate: !swiper.params.cssMode
-                })
-            });
-        }
         function initSliders() {
             if (document.querySelector(".sales-swiper")) new core(".sales-swiper", {
-                modules: [ Pagination, Navigation, Autoplay, EffectFade, Mousewheel, Keyboard ],
+                modules: [ Pagination, Autoplay, Mousewheel, Keyboard ],
                 grabCursor: true,
-                initialSlide: 1,
+                initialSlide: 0,
                 speed: 800,
                 pagination: {
                     el: ".swiper-pagination",
@@ -4520,10 +4231,6 @@
                         slidesPerView: 3,
                         spaceBetween: 30
                     }
-                },
-                navigation: {
-                    prevEl: ".swiper-button-prev",
-                    nextEl: ".swiper-button-next"
                 }
             });
         }
@@ -4671,14 +4378,71 @@
             document.documentElement.classList.toggle("lock");
             document.documentElement.classList.toggle("menu-open");
         }));
-        var map;
-        DG.then((function() {
-            map = DG.map("map", {
-                center: [ 43.23270909691023, 76.90614352761264 ],
-                zoom: 19
-            });
-            DG.marker([ 43.23270909691023, 76.90614352761264 ]).addTo(map).bindPopup("Вы кликнули по мне!");
-        }));
+        let detailsStatusData = {}, detailCount = 0;
+        let statusPattern = {
+            body: null,
+            btn: null,
+            ready: true
+        };
+        function initDetailsModule() {
+            let details = document.querySelectorAll("[data-details]");
+            console.log(details);
+            details.forEach((detail => {
+                initDetail(detail);
+            }));
+        }
+        function initDetail(detail) {
+            configureDetail(detail);
+            hideDetailsSpoilers(detail);
+            detail.addEventListener("click", handleBlockClick);
+        }
+        function configureDetail(detail) {
+            let id = `detail${detailCount}`;
+            detail.setAttribute("data-details", id);
+            detailsStatusData[id] = structuredClone(statusPattern);
+            detailCount++;
+        }
+        function hideDetailsSpoilers(detail) {
+            let spoilers = detail.querySelectorAll("[details-spoiler]");
+            spoilers.forEach((spoiler => {
+                _slideUp(spoiler, 0);
+            }));
+        }
+        function handleBlockClick(e) {
+            if (null != e.target.getAttribute("details-btn")) executeDetailBehavior(e.target);
+        }
+        function executeDetailBehavior(button) {
+            let detailBody = button.closest("[details-body]").querySelector("[details-spoiler]");
+            let detailId = button.closest("[data-details]").getAttribute("data-details");
+            if (false == detailsStatusData[detailId]["ready"]) return;
+            detailsStatusData[detailId]["ready"] = false;
+            if (detailBody) {
+                executeBodyBehavior(detailBody, detailId);
+                executeButtonBehavior(button, detailId);
+            }
+        }
+        function executeButtonBehavior(button, id) {
+            let prevBtn = detailsStatusData[id]["btn"];
+            button.classList.toggle("_active");
+            if (null != prevBtn) prevBtn.classList.remove("_active");
+            if (button.isEqualNode(prevBtn)) detailsStatusData[id]["btn"] = null; else detailsStatusData[id]["btn"] = button;
+        }
+        function executeBodyBehavior(body, id) {
+            let prevBody = detailsStatusData[id]["body"];
+            let delay = 500;
+            _slideToggle(body);
+            if (true != body.isEqualNode(prevBody)) {
+                delay *= 2;
+                setTimeout((() => {
+                    if (null != prevBody) _slideUp(prevBody, 500);
+                }), 500);
+                detailsStatusData[id]["body"] = body;
+            }
+            setTimeout((() => {
+                detailsStatusData[id]["ready"] = true;
+            }), delay);
+        }
+        initDetailsModule();
         window["FLS"] = false;
         isWebp();
         addTouchClass();

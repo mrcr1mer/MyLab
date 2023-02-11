@@ -9,7 +9,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="format-detection" content="telephone=no">
 		<!-- <style>body{opacity: 0;}</style> -->
-		<link rel="stylesheet" href="css/style.min.css?_v=20230210162323">
+		<link rel="stylesheet" href="css/style.min.css?_v=20230211170945">
 		<link rel="shortcut icon" href="favicon.ico">
 		<!-- <meta name="robots" content="noindex, nofollow"> -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,8 +23,8 @@
 				<div class="header__items">
 					<a href="index.html" class="header__logo"><img src="img/logo.svg" alt=""></a>
 					<a data-popup="#popup-search" href="#" class="header__item header__item_search _icon-search"></a>
-					<a href="" class="header__item _icon-phone"></a>
-					<a href="" class="header__item _icon-maps"></a>
+					<a href="#" data-goto-top="20" data-goto-header data-goto="#contacts" class="header__item _icon-phone"></a>
+					<a href="#" data-goto-top="20" data-goto-header data-goto="#location" class="header__item _icon-maps"></a>
 				</div>
 				<div data-da=".popup__content, 767, first" class="header__search">
 					<form action="#" class="search-header">
@@ -36,18 +36,19 @@
 					<button type="button" class="menu__icon icon-menu"><span></span></button>
 					<nav class="menu__body">
 						<ul class="menu__list">
-							<li class="menu__item"><a href="#" data-goto-speed="500" data-goto-header data-goto="#sales" class="menu__link">Акции</a></li>
-							<li class="menu__item"><a href="#" data-goto-speed="500" data-goto-header data-goto="#recomendations" class="menu__link">Рекомендации</a></li>
-							<li class="menu__item"><a href="#" data-goto-speed="500" data-goto-header data-goto="#catalog" class="menu__link">Каталог</a></li>
-							<li class="menu__item"><a href="#" data-goto-speed="500" data-goto-header data-goto="#contacts" class="menu__link">Контакты</a></li>
-							<li class="menu__item"><a href="#" data-goto-speed="1000" data-goto-header data-goto="#location" class="menu__link">Адрес</a></li>
-							<li class="menu__item"><a href="#" data-goto-speed="500" data-goto-header data-goto="#partners" class="menu__link">Партнеры</a></li>
-							<li class="menu__item"><a href="#" data-goto-speed="500" data-goto-header data-goto="#vacancies" class="menu__link">Вакансии</a></li>
+							<li class="menu__item"><a href="#" data-goto-top="20" data-goto-header data-goto="#sales" class="menu__link">Акции</a></li>
+							<li class="menu__item"><a href="#" data-goto-top="20" data-goto-header data-goto="#recomendation" class="menu__link">Рекомендации</a></li>
+							<li class="menu__item"><a href="#" data-goto-top="20" data-goto-header data-goto="#catalog" class="menu__link">Каталог</a></li>
+							<li class="menu__item"><a href="#" data-goto-top="20" data-goto-header data-goto="#contacts" class="menu__link">Контакты</a></li>
+							<li class="menu__item"><a href="#" data-goto-top="20" data-goto-header data-goto="#location" class="menu__link">Адрес</a></li>
+							<li class="menu__item"><a href="#" data-goto-top="20" data-goto-header data-goto="#partners" class="menu__link">Партнеры</a></li>
+							<li class="menu__item"><a href="#" data-goto-top="20" data-goto-header data-goto="#vacancies" class="menu__link">Вакансии</a></li>
 						</ul>
 					</nav>
 				</div>
 			</div>
 		</header>
+
 		<main class="page">
 			<section data-fullscreen class="mainblock">
 				<div class="mainblock__content">
@@ -56,7 +57,7 @@
 							<div class="body-mainblock__logo"><img src="img/logo.svg" alt=""></div>
 							<h1 class="body-mainblock__title">Доступные анализы</h1>
 						</div>
-						<button type="button" class="body-mainblock__btn">Каталог</button>
+						<button data-goto-top="20" data-goto-header data-goto="#catalog" type="button" class="body-mainblock__btn">Каталог</button>
 					</div>
 					<div class="mainblock__info info-mainblock">
 						<div class="info-mainblock__bg"><picture><source srcset="img/mainblock/bg1.webp" type="image/webp"><img src="img/mainblock/bg1.jpg" alt=""></picture></div>
@@ -73,182 +74,263 @@
 					</div>
 				</div>
 			</section>
+			<!--
+			
 			<section class="sales" id="sales">
 				<div class="sales__container">
 					<div class="sales-swiper swiper">
-						<div class="sales-swiper__wrapper swiper-wrapper">
+						<div class="sales-swiper__wrapper swiper-wrapper" data-details>
 							<div class="sales-swiper__slide swiper-slide">
 								<article class="sales-swiper__item item-sales">
-									<div class="item-sales__body">
-										<div class="item-sales__info">
-											<h2 class="item-sales__title _icon-sale">-30% на всё</h2>
-											<div class="item-sales__subtitle">До конца января действует скидка 30% на все виды
-												анализов.</div>
-											<div data-spollers class="item-sales__detailed detailed-item-sales">
-												<button type="button" data-spoller class="detailed-item-sales__btn">Подробнее</button>
-												<div class="detailed-item-sales__body">
-													<div class="detailed-item-sales__text">
-														Более подробная информация если такая имеется. Более подробная
-														информация если такая
-														имеется.
-													</div>
-													<div class="detailed-item-sales__date">Действует до: 20.01.2023</div>
+									<div class="item-sales__body" details-body>
+										<div class="item-sales__main" >
+											<div class="item-sales__info">
+												<h2 class="item-sales__title _icon-sale">-30% на всё</h2>
+												<div class="item-sales__subtitle">
+													До конца января действует скидка 30% на все виды анализов.
 												</div>
+												<button type="button" class="detailed-item-sales__btn" details-btn>Подробнее</button>
+											</div>
+											<div class="item-sales__background _icon-discount">
+												<picture><source srcset="img/discount/01.webp" type="image/webp"><img src="img/discount/01.jpg" alt=""></picture>
 											</div>
 										</div>
-										<div class="item-sales__background">
-											<picture><source srcset="img/discount/01.webp" type="image/webp"><img src="img/discount/01.jpg" alt=""></picture>
-											<i class="_icon-discount"></i>
+										<div class="item-sales__detailed detailed-item-sales" details-spoiler>
+											<div class="detailed-item-sales__body">
+												<div class="detailed-item-sales__text">
+													Более подробная информация если такая имеется. Более подробная информация если такая имеется.
+												</div>
+												<div class="detailed-item-sales__date">Действует до: 20.01.2023</div>
+											</div>
 										</div>
 									</div>
 								</article>
 							</div>
-							<div class="sales-swiper__slide swiper-slide">
-								<article class="sales-swiper__item item-sales">
-									<div class="item-sales__body">
-										<div class="item-sales__info">
-											<h2 class="item-sales__title">-30% на всё</h2>
-											<div class="item-sales__subtitle">До конца января действует скидка 30% на все виды
-												анализов.</div>
-											<div data-spollers class="item-sales__detailed detailed-item-sales">
-												<div class="detailed-item-sales__item">
-													<button type="button" data-spoller class="detailed-item-sales__btn">Подробнее</button>
-													<div class="detailed-item-sales__body">
-														<div class="detailed-item-sales__text">
-															Более подробная информация если такая имеется. Более подробная информация
-															если такая
-															имеется.
-														</div>
-														<div class="detailed-item-sales__date">Действует до: 20.01.2023</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="item-sales__background">
-											<picture><source srcset="img/discount/02.webp" type="image/webp"><img src="img/discount/02.jpg" alt=""></picture>
-											<i class="_icon-discount"></i>
-										</div>
-									</div>
-								</article>
-							</div>
-							<div class="sales-swiper__slide swiper-slide">
-								<article class="sales-swiper__item item-sales">
-									<div class="item-sales__body">
-										<div class="item-sales__info">
-											<h2 class="item-sales__title">-30% на всё</h2>
-											<div class="item-sales__subtitle">До конца января действует скидка 30% на все виды
-												анализов.</div>
-											<div data-spollers class="item-sales__detailed detailed-item-sales">
-												<div class="detailed-item-sales__item">
-													<button type="button" data-spoller class="detailed-item-sales__btn">Подробнее</button>
-													<div class="detailed-item-sales__body">
-														<div class="detailed-item-sales__text">
-															Более подробная информация если такая имеется. Более подробная информация
-															если такая
-															имеется.
-														</div>
-														<div class="detailed-item-sales__date">Действует до: 20.01.2023</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="item-sales__background">
-											<picture><source srcset="img/discount/03.webp" type="image/webp"><img src="img/discount/03.jpg" alt=""></picture>
-											<i class="_icon-discount"></i>
-										</div>
-									</div>
-								</article>
-							</div>
-							<div class="sales-swiper__slide swiper-slide">
-								<article class="sales-swiper__item item-sales">
-									<div class="item-sales__body">
-										<div class="item-sales__info">
-											<h2 class="item-sales__title _icon-sale">-30% на всё</h2>
-											<div class="item-sales__subtitle">До конца января действует скидка 30% на все виды
-												анализов.</div>
-											<div data-spollers class="item-sales__detailed detailed-item-sales">
-												<div class="detailed-item-sales__item">
-													<button type="button" data-spoller class="detailed-item-sales__btn">Подробнее</button>
-													<div class="detailed-item-sales__body">
-														<div class="detailed-item-sales__text">
-															Более подробная информация если такая имеется. Более подробная информация
-															если такая
-															имеется.
-														</div>
-														<div class="detailed-item-sales__date">Действует до: 20.01.2023</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="item-sales__background">
-											<picture><source srcset="img/discount/01.webp" type="image/webp"><img src="img/discount/01.jpg" alt=""></picture>
-											<i class="_icon-discount"></i>
-										</div>
-									</div>
-								</article>
-							</div>
-							<div class="sales-swiper__slide swiper-slide">
-								<article class="sales-swiper__item item-sales">
-									<div class="item-sales__body">
-										<div class="item-sales__info">
-											<h2 class="item-sales__title">-30% на всё</h2>
-											<div class="item-sales__subtitle">До конца января действует скидка 30% на все виды
-												анализов.</div>
-											<div data-spollers class="item-sales__detailed detailed-item-sales">
-												<div class="detailed-item-sales__item">
-													<button type="button" data-spoller class="detailed-item-sales__btn">Подробнее</button>
-													<div class="detailed-item-sales__body">
-														<div class="detailed-item-sales__text">
-															Более подробная информация если такая имеется. Более подробная информация
-															если такая
-															имеется.
-														</div>
-														<div class="detailed-item-sales__date">Действует до: 20.01.2023</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="item-sales__background">
-											<picture><source srcset="img/discount/02.webp" type="image/webp"><img src="img/discount/02.jpg" alt=""></picture>
-											<i class="_icon-discount"></i>
-										</div>
-									</div>
-								</article>
-							</div>
-							<div class="sales-swiper__slide swiper-slide">
-								<article class="sales-swiper__item item-sales">
-									<div class="item-sales__body">
-										<div class="item-sales__info">
-											<h2 class="item-sales__title">-30% на всё</h2>
-											<div class="item-sales__subtitle">До конца января действует скидка 30% на все виды
-												анализов.</div>
-											<div data-spollers class="item-sales__detailed detailed-item-sales">
-												<div class="detailed-item-sales__item">
-													<button type="button" data-spoller class="detailed-item-sales__btn">Подробнее</button>
-													<div class="detailed-item-sales__body">
-														<div class="detailed-item-sales__text">
-															Более подробная информация если такая имеется. Более подробная информация
-															если такая
-															имеется.
-														</div>
-														<div class="detailed-item-sales__date">Действует до: 20.01.2023</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="item-sales__background">
-											<picture><source srcset="img/discount/03.webp" type="image/webp"><img src="img/discount/03.jpg" alt=""></picture>
-											<i class="_icon-discount"></i>
-										</div>
-									</div>
-								</article>
-							</div>
-
 						</div>
 						<div class="sales-swiper__pagination swiper-pagination"></div>
 					</div>
 				</div>
 			</section>
+			<section class="recomendation" id="recomendation">
+				<div class="recomendation__container">
+					<h2 class="recomendation__title title">Подготовка к анализам</h2>
+					<div class="recomendation__text">
+						<p>
+							Накануне сдачи анализа постарайтесь исключить физические нагрузки и эмоциональное напряжение, прием алкоголя, курение (за 1 час до исследования), ограничьте прием жирной пищи. Если накануне состоялось застолье, перенесите лабораторное исследование на 1-2 дня.
+						</p>
+						<p>
+							Если Вы принимаете лекарства, обязательно предупредите об этом лечащего врача. Большинство анализов рекомендуется сдавать натощак, т.е. не менее чем через 4-6 часов после приема пищи.
+						</p>
+					</div>
+				</div>
+			</section>
+			<section class="catalog" id="catalog">
+				<div class="catalog__container">
+					<h2 class="catalog__title title">Каталог</h2>
+					<ul data-one-spoller data-spollers class="catalog__items">
+						<li class="catalog__item item-catalog">
+							<button type="button" data-spoller class="item-catalog__title _icon-arrow">Гематологические и гемостазиологические исследования</button>
+							<div class="item-catalog__body">
+								<ul class="item-catalog__items">
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Общий анализ крови (лейкоформула+тромбоциты+СОЭ)</div>
+										<div class="item-catalog__price">2000тг</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="catalog__item item-catalog">
+							<button type="button" data-spoller class="item-catalog__title _icon-arrow">Коагулограмма стандарт 06-032: 2840 (КК 2080)</button>
+							<div class="item-catalog__body">
+								<ul class="item-catalog__items">
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">ПВ-ПТИ-МНО</div>
+										<div class="item-catalog__price">800тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">АЧТВ</div>
+										<div class="item-catalog__price">800тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Фибриноген по Клаусу</div>
+										<div class="item-catalog__price">800тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">ТВ (Тромбиновое время)</div>
+										<div class="item-catalog__price">800тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">РФМК (растворимые фибринмономерные комплексы)</div>
+										<div class="item-catalog__price">800тг</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="catalog__item item-catalog">
+							<button type="button" data-spoller class="item-catalog__title _icon-arrow">Коагулограмма расширенная 06-001: 9260 (КК 7060)</button>
+							<div class="item-catalog__body">
+								<ul class="item-catalog__items">
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">ПВ-ПТИ-МНО (Протромбиновое время-Протромбиновый
+											индекс-Международное нормализованное отношение) </div>
+										<div class="item-catalog__price">800тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">АЧТВ (Активированное частичное тромбопластиновое </div>
+										<div class="item-catalog__price">800тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Фибриноген по Клаусу</div>
+										<div class="item-catalog__price">800тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">D-димер</div>
+										<div class="item-catalog__price">5000тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Антитромбин III</div>
+										<div class="item-catalog__price">2500тг</div>
+									</li>		
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Коагулограмма расширенная </div>
+										<div class="item-catalog__price">12500тг</div>
+									</li>	
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Волчаночный антикоагулянт (LA1/LA2) в плазме крови</div>
+										<div class="item-catalog__price">4000тг</div>
+									</li>		
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">АФА (Антифосфолипидные антитела) IgG</div>
+										<div class="item-catalog__price">4200тг</div>
+									</li>		
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">АФА (Антифосфолипидные антитела) IgM</div>
+										<div class="item-catalog__price">4200тг</div>
+									</li>		
+								</ul>
+							</div>
+						</li>
+						<li class="catalog__item item-catalog">
+							<button type="button" data-spoller class="item-catalog__title _icon-arrow">Серологические исследования</button>
+							<div class="item-catalog__body">
+								<ul class="item-catalog__items">
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Микрореакция</div>
+										<div class="item-catalog__price">1200тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Определение группы крови + резус фактора</div>
+										<div class="item-catalog__price">2000тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Диагностика Сифилиса: кровь на RW (Реакция Вассермана)</div>
+										<div class="item-catalog__price">2500тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Реакция Райта-Хеддельсона на бруцеллез</div>
+										<div class="item-catalog__price">3000тг</div>
+									</li>	
+								</ul>
+							</div>
+						</li>
+						<li class="catalog__item item-catalog">
+							<button type="button" data-spoller class="item-catalog__title _icon-arrow">Общеклинические исследования</button>
+							<div class="item-catalog__body">
+								<ul class="item-catalog__items">
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">ОАМ (Общий анализ мочи)</div>
+										<div class="item-catalog__price">1000тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Суточная экскреция белка в моче</div>
+										<div class="item-catalog__price">1000тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">МАУ (Микроальбуминурия)</div>
+										<div class="item-catalog__price">2000тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Моча по Зимницкому (суточная)</div>
+										<div class="item-catalog__price">1300тг</div>
+									</li>	
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Моча по Нечипоренко</div>
+										<div class="item-catalog__price">1300тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Желчные пигменты в моче</div>
+										<div class="item-catalog__price">1000тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Глюкоза в моче</div>
+										<div class="item-catalog__price">1100тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Мазок на степень чистоты + (Гн;трих) - без забора</div>
+										<div class="item-catalog__price">1500тг</div>
+									</li>	
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Мазок секрета простаты - без забора (уролог-забор)</div>
+										<div class="item-catalog__price">1700тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Мазок из уретры - без забора (уролог-забор)</div>
+										<div class="item-catalog__price">1500тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Риноцитограмма - без забора (отоларинголог-забор)</div>
+										<div class="item-catalog__price">1500тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Мазок на онкоцитологию - без забора</div>
+										<div class="item-catalog__price">3000тг</div>
+									</li>	
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Кал на я/гл и цисты простейших (с использованием </div>
+										<div class="item-catalog__price">2000тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Кал на яйца гельминтов и цисты простейших</div>
+										<div class="item-catalog__price">1100тг</div>
+									</li>	
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Копрограмма</div>
+										<div class="item-catalog__price">1100тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Кал на лямблии (экспресс-метод) _ИХА</div>
+										<div class="item-catalog__price">3200тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Кал на скрытую кровь (экспресс-метод) _ИХА </div>
+										<div class="item-catalog__price">2300тг</div>
+									</li>
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Кал на скрытую кровь ручным методом </div>
+										<div class="item-catalog__price">1400тг</div>
+									</li>	
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Моча. 3-х стаканная проба_1 порция (1 исследование)</div>
+										<div class="item-catalog__price">1000тг</div>
+									</li>	
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Моча. 3-х стаканная проба_2 порция (1 исследование)</div>
+										<div class="item-catalog__price">1000тг</div>
+									</li>	
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Моча. 3-х стаканная проба_3 порция (1 исследование)</div>
+										<div class="item-catalog__price">1000тг</div>
+									</li>	
+									<li class="item-catalog__item">
+										<div class="item-catalog__name-research">Цитологическое исследование мазка из шейки матка ПАПтест на аппарате жидкостной цитологии</div>
+										<div class="item-catalog__price">10500тг</div>
+									</li>	
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</section>	
 			<section class="location" id="location">
 				<div class="location__title title">Адрес</div>
 				<div class="location__body">
@@ -256,22 +338,58 @@
 					<div class="location__place place-location">
 						<h3 class="place-location__title">Мы на картах:</h3>
 						<div class="place-location__maps">
-							<a target="_blank" href="https://goo.gl/maps/GPt18TR9qkis45mk9" class="place-location__map"><picture><source srcset="img/maps/google-map.webp" type="image/webp"><img src="img/maps/google-map.png" alt=""></picture></a>
-							<a target="_blank" href="https://go.2gis.com/weja4p" class="place-location__map"><picture><source srcset="img/maps/2gis.webp" type="image/webp"><img src="img/maps/2gis.png" alt=""></picture></a>
+							<a target="_blank" href="https://goo.gl/maps/GPt18TR9qkis45mk9" class="place-location__map"><img
+									src="img/maps/google-map.png" alt=""></a>
+							<a target="_blank" href="https://go.2gis.com/weja4p" class="place-location__map"><img
+									src="img/maps/2gis.png" alt=""></a>
 						</div>
 						<div class="location__map map" id="map">
-							<!-- <iframe
+							<iframe
 								src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1222.2039899899526!2d76.90467322831418!3d43.232401891369086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38836926077f3d33%3A0x5fd05ef0899ee685!2z0KLQsNC80YHQsNC7INCY0L3QstC10YHRgg!5e0!3m2!1sru!2skz!4v1675838884233!5m2!1sru!2skz"
 								width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
 								referrerpolicy="no-referrer-when-downgrade">
-							</iframe> -->
+							</iframe> 
 						</div>
 					</div>
 				</div>
 			</section>
+			<section class="vacancies" id="vacancies">
+				<div class="vacancies__container">
+					<div class="vacancies-swiper swiper">
+						<div class="vacancies-swiper__wrapper swiper-wrapper">
+							<div class="vacancies-swiper__slide swiper-slide">
+								<article class="vacancies-swiper__item item-vacancies">
+									<div class="item-vacancies__body">
+										<div class="item-vacancies__background">
+											<picture><source srcset="img/" type="image/webp"><img src="img/" alt=""></picture>
+											<span class="item-vacancies__salary">150.000 <br>тг</span>
+										</div>
+										<div class="item-vacancies__info">
+											<h2 class="item-vacancies__title">Руководитель лаборотории</h2>
+											<div class="item-vacancies__description">Требуется человек умеющий управлять лабораторей с опытом работы от 2-х лет.</div>
+											<div data-spollers class="item-vacancies__detailed detailed-item-vacancies">
+												<button type="button" data-spoller class="detailed-item-vacancies__btn">Подробнее</button>
+												<div class="detailed-item-vacancies__body">
+													<div class="detailed-item-vacancies__text">
+														Более подробная информация если такая имеется. Более подробная информация если такая имеется.
+													</div>
+													<div class="detailed-item-sales__contacts">Отдел кадров: <a href="tel:87015236744">8(701)-523-67-44<a ></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</article>
+							</div>
+						</div>
+						<div class="vacancies-swiper__pagination swiper-pagination"></div>
+					</div>
+				</div>
+			</section>
+			-->
 		</main>
 		<footer class="footer">
 			<div class="footer__container">
+				<div class="footer__copyright">©Copyright 2023</div>
 			</div>
 		</footer>
 	</div>
@@ -282,11 +400,11 @@
 			</div>
 		</div>
 	</div>
-	<!-- <script src="https://api-maps.yandex.ru/2.1/?apikey=&lang=ru_RU&_v=20230210162323"
+	<!-- <script src="https://api-maps.yandex.ru/2.1/?apikey=&lang=ru_RU&_v=20230211170945"
   type="text/javascript">
 </script> -->
-	<script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full&_v=20230210162323"></script>
-	<script src="js/app.min.js?_v=20230210162323"></script>
+	<script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full&_v=20230211170945"></script>
+	<script src="js/app.min.js?_v=20230211170945"></script>
 </body>
 
 </html>
