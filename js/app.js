@@ -4386,7 +4386,6 @@
         };
         function initDetailsModule() {
             let details = document.querySelectorAll("[data-details]");
-            console.log(details);
             details.forEach((detail => {
                 initDetail(detail);
             }));
@@ -4443,6 +4442,38 @@
             }), delay);
         }
         initDetailsModule();
+        const api = `https://gist.githubusercontent.com/VasilyMur\n/43ef6df83bba694f871f11a16ed7556d/raw/\nb6edff674e35452d6c57ec64177a558f7adb432e/moscowSubway.json`;
+        fetch(api).then((res => res.json())).then((data => {
+            data.forEach((line => {
+                stations.push(...line.stations);
+            }));
+        }));
+        const stations = [];
+        const searchInput = document.querySelector(".search-header__input");
+        const searchOptions = document.querySelector(".search-header__list");
+        function getOptions(word, stations) {
+            return stations.filter((s => {
+                const regex = new RegExp(word, "gi");
+                return s.name.match(regex);
+            }));
+        }
+        function displayOptions() {
+            const options = getOptions(this.value, stations);
+            const html = options.map((station => {
+                const regex = new RegExp(this.value, "gi");
+                const stationName = station.name.replace(regex, `<span class="hl">${this.value}</span>`);
+                return `<li class="search-header__item">${stationName}</li>`;
+            })).slice(0, 10).join("");
+            searchOptions.innerHTML = this.value ? html : null;
+            searchOptions.style.display = "block";
+        }
+        searchInput.addEventListener("focusin", (() => {
+            searchInput = " " == (void 0).value ? searchInput.style.cssText = `border-radius: 27px 27px 0 0;` : searchInput.style.cssText = `border-radius: 50px;`;
+        }));
+        searchInput.addEventListener("focusout", (() => {
+            searchOptions.style.display = "none";
+        }));
+        searchInput.addEventListener("input", displayOptions);
         window["FLS"] = false;
         isWebp();
         addTouchClass();

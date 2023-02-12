@@ -9,7 +9,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="format-detection" content="telephone=no">
 		<!-- <style>body{opacity: 0;}</style> -->
-		<link rel="stylesheet" href="css/style.min.css?_v=20230211170945">
+		<link rel="stylesheet" href="css/style.min.css?_v=20230212210054">
 		<link rel="shortcut icon" href="favicon.ico">
 		<!-- <meta name="robots" content="noindex, nofollow"> -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,16 +21,18 @@
 		<header class="header">
 			<div class="header__container">
 				<div class="header__items">
-					<a href="index.html" class="header__logo"><img src="img/logo.svg" alt=""></a>
+					<div class="header__logo"><img src="img/logo.svg" alt=""></div>
 					<a data-popup="#popup-search" href="#" class="header__item header__item_search _icon-search"></a>
 					<a href="#" data-goto-top="20" data-goto-header data-goto="#contacts" class="header__item _icon-phone"></a>
 					<a href="#" data-goto-top="20" data-goto-header data-goto="#location" class="header__item _icon-maps"></a>
-				</div>
-				<div data-da=".popup__content, 767, first" class="header__search">
-					<form action="#" class="search-header">
-						<button type="submit" class="search-header__button _icon-search"></button>
-						<input autocomplete="off" type="search" name="form[]" data-error="Ошибка" placeholder="Поиск" class="search-header__input">
-					</form>
+					<div data-da=".popup-search__content, 992, first" class="header__search">
+						<form action="#" class="search-header">
+							<button type="submit" class="search-header__button _icon-search"></button>
+							<input autocomplete="off" type="search" name="form[]" data-error="Ошибка" placeholder="Поиск" class="search-header__input">
+						</form>
+						<ul class="search-header__list">
+						</ul>
+					</div>
 				</div>
 				<div class="header__menu menu">
 					<button type="button" class="menu__icon icon-menu"><span></span></button>
@@ -51,25 +53,23 @@
 
 		<main class="page">
 			<section data-fullscreen class="mainblock">
-				<div class="mainblock__content">
-					<div class="mainblock__body body-mainblock">
-						<div class="body-mainblock__info">
-							<div class="body-mainblock__logo"><img src="img/logo.svg" alt=""></div>
-							<h1 class="body-mainblock__title">Доступные анализы</h1>
-						</div>
-						<button data-goto-top="20" data-goto-header data-goto="#catalog" type="button" class="body-mainblock__btn">Каталог</button>
+				<div class="mainblock__content content-mainblock">
+					<div class="content-mainblock__info">
+						<div class="content-mainblock__logo"><img src="img/logo.svg" alt=""></div>
+						<h1 class="content-mainblock__title">Доступные анализы</h1>
 					</div>
-					<div class="mainblock__info info-mainblock">
-						<div class="info-mainblock__bg"><picture><source srcset="img/mainblock/bg1.webp" type="image/webp"><img src="img/mainblock/bg1.jpg" alt=""></picture></div>
-						<div data-da=".body-mainblock__info, 992, last" class="info-mainblock__items">
-							<div class="info-mainblock__item info-mainblock__item_dark">
-								<div class="info-mainblock__icon _icon-delivery"></div>
-								<h3 class="info-mainblock__title">Выезд на дом</h3>
-							</div>
-							<div class="info-mainblock__item">
-								<div class="info-mainblock__icon _icon-time"></div>
-								<h3 class="info-mainblock__title">Ежедневно, 09:00–18:00</h3>
-							</div>
+					<button data-goto-top="20" data-goto-header data-goto="#catalog" type="button" class="content-mainblock__btn">Каталог</button>
+				</div>
+				<div class="mainblock__info info-mainblock">
+					<div class="info-mainblock__bg"><picture><source srcset="img/mainblock/bg.webp" type="image/webp"><img src="img/mainblock/bg.jpg" alt=""></picture></div>
+					<div data-da=".content-mainblock__info, 992, last" class="info-mainblock__items">
+						<div class="info-mainblock__item">
+							<i class="info-mainblock__icon _icon-time"></i>
+							<h3 class="info-mainblock__title">Ежедневно, 09:00–18:00</h3>
+						</div>
+						<div class="info-mainblock__item info-mainblock__item_dark">
+							<i class="info-mainblock__icon _icon-delivery"></i>
+							<h3 class="info-mainblock__title">Выезд на дом</h3>
 						</div>
 					</div>
 				</div>
@@ -389,22 +389,22 @@
 		</main>
 		<footer class="footer">
 			<div class="footer__container">
-				<div class="footer__copyright">©Copyright 2023</div>
+				<div class="footer__copyright">©Все права защищены 2023</div>
 			</div>
 		</footer>
 	</div>
-	<div id="popup-search" aria-hidden="true" class="popup">
-		<div class="popup__wrapper">
-			<div class="popup__content">
-				<button data-close type="button" class="popup__close">Отмена</button>
+	<div id="popup-search" aria-hidden="true" class="popup-search">
+		<div class="popup-search__wrapper">
+			<div class="popup-search__content">
+				<button data-close type="button" class="popup-search__close">Отмена</button>
 			</div>
 		</div>
 	</div>
-	<!-- <script src="https://api-maps.yandex.ru/2.1/?apikey=&lang=ru_RU&_v=20230211170945"
+	<!-- <script src="https://api-maps.yandex.ru/2.1/?apikey=&lang=ru_RU&_v=20230212210054"
   type="text/javascript">
 </script> -->
-	<script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full&_v=20230211170945"></script>
-	<script src="js/app.min.js?_v=20230211170945"></script>
+	<script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full&_v=20230212210054"></script>
+	<script src="js/app.min.js?_v=20230212210054"></script>
 </body>
 
 </html>
