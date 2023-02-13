@@ -571,7 +571,7 @@
                         return;
                     }
                     const buttonClose = e.target.closest(`[${this.options.attributeCloseButton}]`);
-                    if (buttonClose || !e.target.closest(`.${this.options.classes.popupContent}`) && this.isOpen) {
+                    if (buttonClose && this.isOpen) {
                         e.preventDefault();
                         this.close();
                         return;
@@ -4304,7 +4304,7 @@
                         spaceBetween: 30
                     },
                     1270: {
-                        slidesPerView: 3.15,
+                        slidesPerView: 3,
                         spaceBetween: 30
                     }
                 }
@@ -4551,10 +4551,13 @@
             const options = getOptions(this.value, storage);
             const html = options.map((item => {
                 const regex = new RegExp(this.value, "gi");
-                const itemName = item.name.replace(regex, `<span class="hl">${this.value}</span>`);
+                const itemName = item.name.replace(regex, `<span class="bg">${this.value}</span>`);
                 return `<li data-goto-top="40" data-goto-header data-goto="#${item.point_id}" class="search-header__item">${itemName}</li>`;
             })).slice(0, 10).join("");
             searchOptions.innerHTML = this.value ? html : null;
+            if (document.documentElement.classList.contains(".popup-show")) searchOptions.addEventListener("click", (e => {
+                if (e.target.classList.contains("search-header__item")) modules_flsModules.popup.close("#popup-close");
+            }));
         }
         searchInput.addEventListener("focusin", (() => {
             searchOptions.style.display = "block";
