@@ -1270,6 +1270,10 @@ body::after {
   padding: 0.9375rem 0 0 3.125rem;
 }
 
+.item-catalog__items {
+  padding: 0 0.125rem;
+}
+
 .item-catalog__item {
   padding: 0.625rem 1.875rem;
   min-height: 5rem;
@@ -2397,7 +2401,7 @@ button.swiper-pagination-bullet {
   }
 
   .search-header .search-header__input {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
   }
 
   .search-header__item {
@@ -2802,15 +2806,15 @@ button.swiper-pagination-bullet {
 }
 
 @media (max-width: 47.9375em) and (min-width: 20em) and (max-width: 84.375em) {
-@supports (font-size: clamp( 0.75rem , 0.5946601942rem  +  0.7766990291vw , 1.25rem )) {
+@supports (font-size: clamp( 0.875rem , 0.7584951456rem  +  0.5825242718vw , 1.25rem )) {
     .search-header .search-header__input {
-      font-size: clamp( 0.75rem , 0.5946601942rem  +  0.7766990291vw , 1.25rem );
+      font-size: clamp( 0.875rem , 0.7584951456rem  +  0.5825242718vw , 1.25rem );
     }
 }
 
-@supports not (font-size: clamp( 0.75rem , 0.5946601942rem  +  0.7766990291vw , 1.25rem )) {
+@supports not (font-size: clamp( 0.875rem , 0.7584951456rem  +  0.5825242718vw , 1.25rem )) {
     .search-header .search-header__input {
-      font-size: calc(0.75rem + 0.5 * (100vw - 20rem) / 64.375);
+      font-size: calc(0.875rem + 0.375 * (100vw - 20rem) / 64.375);
     }
 }
 }

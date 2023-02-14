@@ -193,7 +193,7 @@
     })();
     (() => {
         "use strict";
-        const files_modules_flsModules = {};
+        const modules_flsModules = {};
         function isWebp() {
             function testWebP(callback) {
                 let webP = new Image;
@@ -724,7 +724,7 @@
                 this.options.logging ? functions_FLS(`[Попапос]: ${message}`) : null;
             }
         }
-        files_modules_flsModules.popup = new Popup({});
+        modules_flsModules.popup = new Popup({});
         var smooth_scroll_polyfills_min = __webpack_require__(2);
         let gotoblock_gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 0) => {
             const targetBlockElement = document.querySelector(targetBlock);
@@ -4326,9 +4326,9 @@
                         const noHeader = gotoLink.hasAttribute("data-goto-header") ? true : false;
                         const gotoSpeed = gotoLink.dataset.gotoSpeed ? gotoLink.dataset.gotoSpeed : 500;
                         const offsetTop = gotoLink.dataset.gotoTop ? parseInt(gotoLink.dataset.gotoTop) : 0;
-                        if (files_modules_flsModules.fullpage) {
+                        if (modules_flsModules.fullpage) {
                             const fullpageSectionId = +document.querySelector(`${gotoLinkSelector}`).closest("[data-fp-section]").dataset.fpId;
-                            fullpageSectionId ? files_modules_flsModules.fullpage.switchingSection(fullpageSectionId) : null;
+                            fullpageSectionId ? modules_flsModules.fullpage.switchingSection(fullpageSectionId) : null;
                             document.documentElement.classList.contains("menu-open") ? menuClose() : null;
                         } else gotoblock_gotoBlock(gotoLinkSelector, noHeader, gotoSpeed, offsetTop);
                         e.preventDefault();
