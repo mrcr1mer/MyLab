@@ -4518,6 +4518,14 @@
             }), delay);
         }
         initDetailsModule();
+        var map;
+        DG.then((function() {
+            map = DG.map("map", {
+                center: [ 43.2327897507478, 76.90611402331352 ],
+                zoom: 19
+            });
+            DG.marker([ 43.2327897507478, 76.90611402331352 ]).addTo(map).bindPopup("Лаборатория MyLab");
+        }));
         const storage = [ {
             name: "Гематологические и гемостазиологические исследования",
             point_id: "id1",
@@ -4526,6 +4534,14 @@
             name: "Коагулограмма стандарт 06-032: 2840 (КК 2080)",
             point_id: "id2",
             subpoint_id: "-1"
+        }, {
+            name: "ПВ-ПТИ-МНО",
+            point_id: "id2",
+            subpoint_id: "sub1"
+        }, {
+            name: "АЧТВ",
+            point_id: "id2",
+            subpoint_id: "sub2"
         }, {
             name: "Коагулограмма расширенная 06-001: 9260 (КК 7060)",
             point_id: "id3",
@@ -4541,6 +4557,32 @@
         } ];
         const searchInput = document.querySelector(".search-header__input");
         const searchOptions = document.querySelector(".search-header__list");
+        const searchForm = document.querySelector(".search-header");
+        searchOptions.addEventListener("click", (e => {
+            if (e.target.classList.contains("search-header__item")) scrollToSearchItem(e.target);
+        }));
+        searchForm.addEventListener("submit", (e => {
+            e.preventDefault();
+            let firstOption = searchOptions.querySelector(".search-header__item");
+            if (firstOption) scrollToSearchItem(firstOption);
+        }));
+        function scrollToSearchItem(item) {
+            searchInput.value = "";
+            let point_id = item.getAttribute("data-point"), subpoint_id = item.getAttribute("data-subpoint"), point = document.querySelector(`[data-id="${point_id}"]`);
+            if (!point.classList.contains("_spoller-active")) point.click();
+            setTimeout((() => {
+                if ("-1" != subpoint_id) {
+                    let subpoint = document.querySelector(`[data-id="${subpoint_id}"]`);
+                    subpoint.classList.add("_glow");
+                    gotoblock_gotoBlock(`[data-id="${subpoint_id}"]`, true, 500, 40);
+                    setTimeout((() => {
+                        subpoint.classList.remove("_glow");
+                    }), 5e3);
+                } else gotoblock_gotoBlock(`[data-id="${point_id}"]`, true, 500, 40);
+            }), 500);
+            searchOptions.style.display = "none";
+            modules_flsModules.popup.close("#popup-close");
+        }
         function getOptions(word, storage) {
             return storage.filter((item => {
                 const regex = new RegExp(word, "gi");
@@ -4549,32 +4591,23 @@
         }
         function displayOptions() {
             const options = getOptions(this.value, storage);
+            if (options.length > 0) {
+                searchInput.style.cssText = "border-radius: 27px 27px 0 0;";
+                searchOptions.style.display = "block";
+            }
             const html = options.map((item => {
-                const regex = new RegExp(this.value, "gi");
+                const regex = new RegExp(/this.value[^\s]+/, "gi");
                 const itemName = item.name.replace(regex, `<span class="bg">${this.value}</span>`);
-                return `<li data-goto-top="40" data-goto-header data-goto="#${item.point_id}" class="search-header__item">${itemName}</li>`;
+                return `<li data-point="${item.point_id}" data-subpoint="${item.subpoint_id}" class="search-header__item">${itemName}</li>`;
             })).slice(0, 10).join("");
             searchOptions.innerHTML = this.value ? html : null;
-            if (document.documentElement.classList.contains(".popup-show")) searchOptions.addEventListener("click", (e => {
-                if (e.target.classList.contains("search-header__item")) modules_flsModules.popup.close("#popup-close");
-            }));
         }
-        searchInput.addEventListener("focusin", (() => {
-            searchOptions.style.display = "block";
-        }));
+        searchInput.addEventListener("input", displayOptions);
         searchInput.addEventListener("focusout", (() => {
             setTimeout((() => {
+                searchInput.style.cssText = "border-radius: 50px;";
                 searchOptions.style.display = "none";
             }), 100);
-        }));
-        searchInput.addEventListener("input", displayOptions);
-        var map;
-        DG.then((function() {
-            map = DG.map("map", {
-                center: [ 43.2327897507478, 76.90611402331352 ],
-                zoom: 19
-            });
-            DG.marker([ 43.2327897507478, 76.90611402331352 ]).addTo(map).bindPopup("Лаборатория MyLab");
         }));
         window["FLS"] = false;
         isWebp();

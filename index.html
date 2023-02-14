@@ -8,7 +8,7 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="format-detection" content="telephone=no">
-		<link rel="stylesheet" href="css/style.min.css?_v=20230213234235">
+		<link rel="stylesheet" href="css/style.min.css?_v=20230214193025">
 		<link rel="shortcut icon" href="favicon.ico">
 		<!-- <meta name="robots" content="noindex, nofollow"> -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -280,26 +280,26 @@
 				<div class="catalog__container">
 					<h2 class="catalog__title title">Каталог</h2>
 					<ul data-one-spoller data-spollers class="catalog__items">
-						<li id="id1" class="catalog__item item-catalog">
-							<button type="button" data-spoller class="item-catalog__title _icon-arrow">Гематологические и гемостазиологические исследования</button>
+						<li class="catalog__item item-catalog">
+							<button data-id="id1" type="button" data-spoller class="item-catalog__title _icon-arrow"><span>Гематологические и гемостазиологические исследования</span></button>
 							<div class="item-catalog__body">
 								<ul class="item-catalog__items">
 									<li class="item-catalog__item">
-										<div class="item-catalog__name-research">Общий анализ крови (лейкоформула+тромбоциты+СОЭ)</div>
+										<div class="item-catalog__name-research">Общий анализ крови (лейкоформула + тромбоциты + СОЭ)</div>
 										<div class="item-catalog__price">2000тг</div>
 									</li>
 								</ul>
 							</div>
 						</li>
-						<li id="id2" class="catalog__item item-catalog">
-							<button type="button" data-spoller class="item-catalog__title _icon-arrow">Коагулограмма стандарт 06-032: 2840 (КК 2080)</button>
+						<li class="catalog__item item-catalog">
+							<button data-id="id2" type="button" data-spoller class="item-catalog__title _icon-arrow"><span>оагулограмма стандарт 06-032: 2840 (КК 2080)</span></button>
 							<div class="item-catalog__body">
 								<ul class="item-catalog__items">
-									<li class="item-catalog__item">
+									<li class="item-catalog__item" data-id="sub1">
 										<div class="item-catalog__name-research">ПВ-ПТИ-МНО</div>
 										<div class="item-catalog__price">800тг</div>
 									</li>
-									<li class="item-catalog__item">
+									<li class="item-catalog__item" data-id="sub2">
 										<div class="item-catalog__name-research">АЧТВ</div>
 										<div class="item-catalog__price">800тг</div>
 									</li>
@@ -318,8 +318,8 @@
 								</ul>
 							</div>
 						</li>
-						<li id="id3" class="catalog__item item-catalog">
-							<button type="button" data-spoller class="item-catalog__title _icon-arrow">Коагулограмма расширенная 06-001: 9260 (КК 7060)</button>
+						<li class="catalog__item item-catalog">
+							<button data-id="id3" type="button" data-spoller class="item-catalog__title _icon-arrow"><span>Коагулограмма расширенная 06-001: 9260 (КК 7060)</span></button>
 							<div class="item-catalog__body">
 								<ul class="item-catalog__items">
 									<li class="item-catalog__item">
@@ -362,8 +362,8 @@
 								</ul>
 							</div>
 						</li>
-						<li id="id4" class="catalog__item item-catalog">
-							<button type="button" data-spoller class="item-catalog__title _icon-arrow">Серологические исследования</button>
+						<li class="catalog__item item-catalog">
+							<button data-id="id4" type="button" data-spoller class="item-catalog__title _icon-arrow"><span>Серологические исследования</span></button>
 							<div class="item-catalog__body">
 								<ul class="item-catalog__items">
 									<li class="item-catalog__item">
@@ -385,8 +385,8 @@
 								</ul>
 							</div>
 						</li>
-						<li id="id5" class="catalog__item item-catalog">
-							<button type="button" data-spoller class="item-catalog__title _icon-arrow">Общеклинические исследования</button>
+						<li class="catalog__item item-catalog">
+							<button data-id="id5" type="button" data-spoller class="item-catalog__title _icon-arrow"><span>Общеклинические исследования</span></button>
 							<div class="item-catalog__body">
 								<ul class="item-catalog__items">
 									<li class="item-catalog__item">
@@ -723,7 +723,7 @@
 	</div>
 	<div aria-hidden="true" class="popup" id="popup-search">
 		<div class="popup__wrapper">
-			<div class="popup__content">
+			<div data-fullscreen class="popup__content">
 				<div class="popup__header">
 					<button data-close type="button" class="popup__close">Отмена</button>
 				</div>
@@ -732,11 +732,8 @@
 		</div>
 	</div>
 
-	<!-- <script src="https://api-maps.yandex.ru/2.1/?apikey=&lang=ru_RU&_v=20230213234235"
-  type="text/javascript">
-</script> -->
-	<script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full&_v=20230213234235"></script>
-	<script src="js/app.min.js?_v=20230213234235"></script>
+	<script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full&_v=20230214193025"></script>
+	<script src="js/app.min.js?_v=20230214193025"></script>
 </body>
 
 </html>
