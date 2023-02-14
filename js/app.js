@@ -4602,6 +4602,16 @@
         }
         function displayOptions() {
             const options = getOptions(this.value, storage);
+            if (options.length > 0 && 0 !== this.value.trim().length) if (document.documentElement.classList.contains("popup-show")) {
+                searchInput.style.cssText = "border-radius: 50px;";
+                searchOptions.style.display = "block";
+            } else {
+                searchInput.style.cssText = "border-radius: 27px 27px 0 0;";
+                searchOptions.style.display = "block";
+            } else {
+                searchInput.style.cssText = "border-radius: 50px;";
+                searchOptions.style.display = "none";
+            }
             const html = options.map((item => {
                 const regex = new RegExp(this.value, "gi");
                 const itemName = item.name.replace(regex, `<span class="bg">${this.value}</span>`);
