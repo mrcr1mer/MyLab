@@ -4535,14 +4535,6 @@
             point_id: "id2",
             subpoint_id: "-1"
         }, {
-            name: "ПВ-ПТИ-МНО",
-            point_id: "id2",
-            subpoint_id: "sub1"
-        }, {
-            name: "АЧТВ",
-            point_id: "id2",
-            subpoint_id: "sub2"
-        }, {
             name: "Коагулограмма расширенная 06-001: 9260 (КК 7060)",
             point_id: "id3",
             subpoint_id: "-1"
@@ -4554,6 +4546,26 @@
             name: "Общеклинические исследования",
             point_id: "id5",
             subpoint_id: "-1"
+        }, {
+            name: "ПВ-ПТИ-МНО",
+            point_id: "id1",
+            subpoint_id: "sub1"
+        }, {
+            name: "Фибриноген по Клаусу",
+            point_id: "id2",
+            subpoint_id: "sub2"
+        }, {
+            name: "АЧТВ (Активированное частичное тромбопластиновое ",
+            point_id: "id3",
+            subpoint_id: "sub3"
+        }, {
+            name: "Диагностика Сифилиса: кровь на RW (Реакция Вассермана)",
+            point_id: "id4",
+            subpoint_id: "sub4"
+        }, {
+            name: "Мазок на степень чистоты + (Гн;трих) - без забора",
+            point_id: "id5",
+            subpoint_id: "sub5"
         } ];
         const searchInput = document.querySelector(".search-header__input");
         const searchOptions = document.querySelector(".search-header__list");
@@ -4574,14 +4586,13 @@
                 if ("-1" != subpoint_id) {
                     let subpoint = document.querySelector(`[data-id="${subpoint_id}"]`);
                     subpoint.classList.add("_glow");
-                    gotoblock_gotoBlock(`[data-id="${subpoint_id}"]`, true, 500, 40);
+                    gotoblock_gotoBlock(`[data-id="${subpoint_id}"]`, true, 500, 50);
                     setTimeout((() => {
                         subpoint.classList.remove("_glow");
                     }), 5e3);
-                } else gotoblock_gotoBlock(`[data-id="${point_id}"]`, true, 500, 40);
+                } else gotoblock_gotoBlock(`[data-id="${point_id}"]`, true, 500, 50);
             }), 500);
-            searchOptions.style.display = "none";
-            modules_flsModules.popup.close("#popup-close");
+            if (document.documentElement.classList.contains("popup-show")) modules_flsModules.popup.close("#popup-close");
         }
         function getOptions(word, storage) {
             return storage.filter((item => {
@@ -4591,14 +4602,10 @@
         }
         function displayOptions() {
             const options = getOptions(this.value, storage);
-            if (options.length > 0) {
-                searchInput.style.cssText = "border-radius: 27px 27px 0 0;";
-                searchOptions.style.display = "block";
-            }
             const html = options.map((item => {
-                const regex = new RegExp(/this.value[^\s]+/, "gi");
+                const regex = new RegExp(this.value, "gi");
                 const itemName = item.name.replace(regex, `<span class="bg">${this.value}</span>`);
-                return `<li data-point="${item.point_id}" data-subpoint="${item.subpoint_id}" class="search-header__item">${itemName}</li>`;
+                return `<li data-point="${item.point_id}" data-subpoint="${item.subpoint_id}" class="search-header__item"><span>${itemName}</span></li>`;
             })).slice(0, 10).join("");
             searchOptions.innerHTML = this.value ? html : null;
         }
@@ -4606,7 +4613,7 @@
         searchInput.addEventListener("focusout", (() => {
             setTimeout((() => {
                 searchInput.style.cssText = "border-radius: 50px;";
-                searchOptions.style.display = "none";
+                searchOptions.style.display = "block";
             }), 100);
         }));
         window["FLS"] = false;
