@@ -4602,11 +4602,11 @@
         }
         function displayOptions() {
             const options = getOptions(this.value, storage);
-            if (options.length > 0 && 0 !== this.value.trim().length) if (document.documentElement.classList.contains("popup-show")) {
-                searchInput.style.cssText = "border-radius: 50px;";
+            if (options.length > 0 && 0 !== this.value.trim().length) if (!document.documentElement.classList.contains("popup-show")) {
+                searchInput.style.cssText = "border-radius: 27px 27px 0 0;";
                 searchOptions.style.display = "block";
             } else {
-                searchInput.style.cssText = "border-radius: 27px 27px 0 0;";
+                searchInput.style.cssText = "border-radius: 50px;";
                 searchOptions.style.display = "block";
             } else {
                 searchInput.style.cssText = "border-radius: 50px;";
@@ -4623,7 +4623,7 @@
         searchInput.addEventListener("focusout", (() => {
             setTimeout((() => {
                 searchInput.style.cssText = "border-radius: 50px;";
-                searchOptions.style.display = "block";
+                searchOptions.style.display = "none";
             }), 100);
         }));
         window["FLS"] = false;
