@@ -4205,29 +4205,24 @@
                     clickable: true,
                     dynamicBullets: true
                 },
-                autoplay: {
-                    delay: 5e3,
-                    stopOnLastSlide: false,
-                    disableOnInteraction: false
-                },
                 keyboard: {
                     enabled: true,
                     onlyInViewport: true
                 },
                 breakpoints: {
                     320: {
-                        slidesPerView: 1.15,
+                        slidesPerView: 1,
                         spaceBetween: 15
                     },
                     479: {
-                        slidesPerView: 2.15,
-                        spaceBetween: 20
+                        slidesPerView: 2,
+                        spaceBetween: 30
                     },
                     992: {
                         slidesPerView: 2.15,
                         spaceBetween: 30
                     },
-                    1270: {
+                    1150: {
                         slidesPerView: 3.15,
                         spaceBetween: 30
                     }
