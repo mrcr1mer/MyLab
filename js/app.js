@@ -4518,14 +4518,6 @@
             }), delay);
         }
         initDetailsModule();
-        var map;
-        DG.then((function() {
-            map = DG.map("map", {
-                center: [ 43.2327897507478, 76.90611402331352 ],
-                zoom: 19
-            });
-            DG.marker([ 43.2327897507478, 76.90611402331352 ]).addTo(map).bindPopup("Лаборатория MyLab");
-        }));
         const storage = [ {
             name: "Гематологические и гемостазиологические исследования",
             point_id: "id1",
@@ -4586,11 +4578,11 @@
                 if ("-1" != subpoint_id) {
                     let subpoint = document.querySelector(`[data-id="${subpoint_id}"]`);
                     subpoint.classList.add("_glow");
-                    gotoblock_gotoBlock(`[data-id="${subpoint_id}"]`, true, 500, 50);
+                    gotoblock_gotoBlock(`[data-id="${subpoint_id}"]`, false, 500, window.innerHeight / 2 - subpoint.offsetHeight / 2);
                     setTimeout((() => {
                         subpoint.classList.remove("_glow");
                     }), 5e3);
-                } else gotoblock_gotoBlock(`[data-id="${point_id}"]`, true, 500, 50);
+                } else gotoblock_gotoBlock(`[data-id="${point_id}"]`, false, 500, window.innerHeight / 2 - point.offsetHeight / 2);
             }), 500);
             if (document.documentElement.classList.contains("popup-show")) modules_flsModules.popup.close("#popup-close");
         }

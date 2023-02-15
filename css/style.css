@@ -1271,7 +1271,7 @@ body::after {
 }
 
 .item-catalog__items {
-  padding: 0 0.125rem;
+  padding: 0 0.3125rem 0 0;
 }
 
 .item-catalog__item {
