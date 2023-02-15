@@ -4205,6 +4205,11 @@
                     clickable: true,
                     dynamicBullets: true
                 },
+                autoplay: {
+                    delay: 5e3,
+                    stopOnLastSlide: false,
+                    disableOnInteraction: false
+                },
                 keyboard: {
                     enabled: true,
                     onlyInViewport: true
@@ -4214,16 +4219,24 @@
                         slidesPerView: 1,
                         spaceBetween: 15
                     },
-                    479: {
+                    370: {
+                        slidesPerView: 1.25,
+                        spaceBetween: 15
+                    },
+                    445: {
+                        slidesPerView: 1.5,
+                        spaceBetween: 15
+                    },
+                    670: {
                         slidesPerView: 2,
-                        spaceBetween: 30
+                        spaceBetween: 20
                     },
-                    992: {
-                        slidesPerView: 2.15,
-                        spaceBetween: 30
+                    900: {
+                        slidesPerView: 2.5,
+                        spaceBetween: 25
                     },
-                    1150: {
-                        slidesPerView: 3.15,
+                    1070: {
+                        slidesPerView: 3,
                         spaceBetween: 30
                     }
                 }
@@ -4233,18 +4246,22 @@
                 grabCursor: true,
                 speed: 800,
                 spaceBetween: 20,
-                slidesPerView: 3,
                 breakpoints: {
                     320: {
-                        grid: {
-                            rows: 1,
-                            fill: "row"
-                        }
+                        slidesPerView: 3
                     },
-                    768: {
+                    560: {
+                        slidesPerView: 2,
                         grid: {
                             rows: 2,
-                            fill: "row"
+                            fill: "rows"
+                        }
+                    },
+                    992: {
+                        slidesPerView: 3,
+                        grid: {
+                            rows: 2,
+                            fill: "rows"
                         }
                     }
                 },
@@ -4287,18 +4304,26 @@
                 },
                 breakpoints: {
                     320: {
-                        slidesPerView: 1.15,
+                        slidesPerView: 1,
                         spaceBetween: 15
                     },
-                    479: {
-                        slidesPerView: 2.15,
+                    370: {
+                        slidesPerView: 1.25,
+                        spaceBetween: 15
+                    },
+                    445: {
+                        slidesPerView: 1.5,
+                        spaceBetween: 15
+                    },
+                    670: {
+                        slidesPerView: 2,
                         spaceBetween: 20
                     },
-                    992: {
-                        slidesPerView: 2.15,
-                        spaceBetween: 30
+                    900: {
+                        slidesPerView: 2.5,
+                        spaceBetween: 25
                     },
-                    1270: {
+                    1070: {
                         slidesPerView: 3,
                         spaceBetween: 30
                     }
