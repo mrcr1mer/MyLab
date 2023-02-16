@@ -4538,6 +4538,13 @@
             }), delay);
         }
         initDetailsModule();
+        DG.then((function() {
+            const map = DG.map("map", {
+                center: [ 43.2327897507478, 76.90611402331352 ],
+                zoom: 19
+            });
+            DG.marker([ 43.2327897507478, 76.90611402331352 ]).addTo(map).bindPopup("Лаборатория MyLab");
+        }));
         const storage = [ {
             name: "Гематологические и гемостазиологические исследования",
             point_id: "id1",
