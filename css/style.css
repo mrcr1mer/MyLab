@@ -1039,6 +1039,15 @@ body::after {
   color: #7E7E7E;
 }
 
+.info-mainblock__item_dark {
+  background-color: #363535;
+  color: #fff;
+}
+
+.info-mainblock__item_dark .info-mainblock__icon {
+  color: #fff;
+}
+
 .info-mainblock__icon {
   color: #7E7E7E;
   font-size: 5.625rem;
@@ -2248,15 +2257,6 @@ button.swiper-pagination-bullet {
             flex-direction: row;
     width: 100%;
     min-width: 0;
-  }
-
-  .info-mainblock__item_dark {
-    background-color: #363535;
-    color: #fff;
-  }
-
-  .info-mainblock__item_dark .info-mainblock__icon {
-    color: #fff;
   }
 
   .item-catalog__title {
