@@ -4219,21 +4219,9 @@
                         slidesPerView: 1,
                         spaceBetween: 15
                     },
-                    370: {
-                        slidesPerView: 1.25,
-                        spaceBetween: 15
-                    },
-                    445: {
-                        slidesPerView: 1.5,
-                        spaceBetween: 15
-                    },
                     670: {
                         slidesPerView: 2,
                         spaceBetween: 20
-                    },
-                    900: {
-                        slidesPerView: 2.5,
-                        spaceBetween: 25
                     },
                     1070: {
                         slidesPerView: 3,
@@ -4246,24 +4234,10 @@
                 grabCursor: true,
                 speed: 800,
                 spaceBetween: 20,
-                breakpoints: {
-                    320: {
-                        slidesPerView: 3
-                    },
-                    560: {
-                        slidesPerView: 2,
-                        grid: {
-                            rows: 2,
-                            fill: "rows"
-                        }
-                    },
-                    992: {
-                        slidesPerView: 3,
-                        grid: {
-                            rows: 2,
-                            fill: "rows"
-                        }
-                    }
+                slidesPerView: 3,
+                grid: {
+                    rows: 2,
+                    fill: "rows"
                 },
                 pagination: {
                     el: ".swiper-pagination",
@@ -4307,21 +4281,9 @@
                         slidesPerView: 1,
                         spaceBetween: 15
                     },
-                    370: {
-                        slidesPerView: 1.25,
-                        spaceBetween: 15
-                    },
-                    445: {
-                        slidesPerView: 1.5,
-                        spaceBetween: 15
-                    },
                     670: {
                         slidesPerView: 2,
                         spaceBetween: 20
-                    },
-                    900: {
-                        slidesPerView: 2.5,
-                        spaceBetween: 25
                     },
                     1070: {
                         slidesPerView: 3,
@@ -4538,113 +4500,147 @@
             }), delay);
         }
         initDetailsModule();
-        DG.then((function() {
-            const map = DG.map("map", {
-                center: [ 43.2327897507478, 76.90611402331352 ],
-                zoom: 19
-            });
-            DG.marker([ 43.2327897507478, 76.90611402331352 ]).addTo(map).bindPopup("Лаборатория MyLab");
-        }));
-        const storage = [ {
-            name: "Гематологические и гемостазиологические исследования",
-            point_id: "id1",
-            subpoint_id: "-1"
+        let storage = [];
+        storage = [ {
+            title: "Общий анализ крови (лейкоформула + тромбоциты + СОЭ)",
+            slug: "obshij-analiz-krovi-lejkoformulatrombocitysoe"
         }, {
-            name: "Коагулограмма стандарт 06-032: 2840 (КК 2080)",
-            point_id: "id2",
-            subpoint_id: "-1"
+            title: "Диагностика Сифилиса: кровь на RW (Реакция Вассермана)",
+            slug: "sub4"
         }, {
-            name: "Коагулограмма расширенная 06-001: 9260 (КК 7060)",
-            point_id: "id3",
-            subpoint_id: "-1"
+            title: "Фибриноген по Клаусу",
+            slug: "fibrinogen-po-klausu"
         }, {
-            name: "Серологические исследования",
-            point_id: "id4",
-            subpoint_id: "-1"
+            title: "D-димер",
+            slug: "d-dimer"
         }, {
-            name: "Общеклинические исследования",
-            point_id: "id5",
-            subpoint_id: "-1"
+            title: "Мазок на степень чистоты + (Гн;трих) - без забора",
+            slug: "sub5"
         }, {
-            name: "ПВ-ПТИ-МНО",
-            point_id: "id1",
-            subpoint_id: "sub1"
+            title: "Гематологические и гемостазиологические исследования",
+            slug: "gematologicheskie-i-gemostaziologicheskie-issledovaniya"
         }, {
-            name: "Фибриноген по Клаусу",
-            point_id: "id2",
-            subpoint_id: "sub2"
+            title: "Коагулограмма стандарт 06-032: 2840 (КК 2080)",
+            slug: "koagulogramma-standart-06-032-2840-kk-2080"
         }, {
-            name: "АЧТВ (Активированное частичное тромбопластиновое ",
-            point_id: "id3",
-            subpoint_id: "sub3"
+            title: "Коагулограмма расширенная 06-001: 9260 (КК 7060)",
+            slug: "koagulogramma-rasshirennaya-06-001-9260-kk-7060"
         }, {
-            name: "Диагностика Сифилиса: кровь на RW (Реакция Вассермана)",
-            point_id: "id4",
-            subpoint_id: "sub4"
+            title: "Серологические исследования",
+            slug: "id4"
         }, {
-            name: "Мазок на степень чистоты + (Гн;трих) - без забора",
-            point_id: "id5",
-            subpoint_id: "sub5"
+            title: "Общеклинические исследования",
+            slug: "id5"
+        }, {
+            title: "Диагностика Сифилиса: кровь на RW (Реакция Вассермана)",
+            slug: "sub4"
+        }, {
+            title: "Фибриноген по Клаусу",
+            slug: "fibrinogen-po-klausu"
+        }, {
+            title: "D-димер",
+            slug: "d-dimer"
+        }, {
+            title: "Мазок на степень чистоты + (Гн;трих) - без забора",
+            slug: "sub5"
+        }, {
+            title: "Гематологические и гемостазиологические исследования",
+            slug: "gematologicheskie-i-gemostaziologicheskie-issledovaniya"
+        }, {
+            title: "Коагулограмма стандарт 06-032: 2840 (КК 2080)",
+            slug: "koagulogramma-standart-06-032-2840-kk-2080"
+        }, {
+            title: "Коагулограмма расширенная 06-001: 9260 (КК 7060)",
+            slug: "koagulogramma-rasshirennaya-06-001-9260-kk-7060"
+        }, {
+            title: "Серологические исследования",
+            slug: "id4"
+        }, {
+            title: "Общеклинические исследования",
+            slug: "id5"
         } ];
+        const searchUrl = "http://127.0.0.1:8000/search/";
         const searchInput = document.querySelector(".search-header__input");
         const searchOptions = document.querySelector(".search-header__list");
         const searchForm = document.querySelector(".search-header");
+        let searchValue = "";
+        searchInput.addEventListener("focusin", (() => {
+            if (0 == storage.length) getSearchData(searchUrl);
+        }));
+        function getSearchData(url) {
+            fetch(url, {
+                method: "GET"
+            }).then((response => {
+                if (response.ok) return response.json();
+            })).then((data => {
+                storage = data.data;
+            }));
+        }
+        searchInput.addEventListener("focusout", (() => {
+            setTimeout((() => {
+                setDisplayAndBorderRadius("50px", "none");
+            }), 100);
+        }));
+        searchInput.addEventListener("input", (e => {
+            searchValue = e.target.value;
+            let options = getOptions();
+            displayOptions(options);
+        }));
+        function getOptions() {
+            if (0 == searchValue.length) return [];
+            const regex = new RegExp(searchValue, "gi");
+            return storage.filter((item => item.title.match(regex)));
+        }
+        function displayOptions(options) {
+            setSearchStylesByOptions(options);
+            searchOptions.innerHTML = getOptionsHtml(options);
+        }
+        function setSearchStylesByOptions(options) {
+            let border = "50px", display = "block";
+            if (0 == options.length) display = "none"; else if (false == document.documentElement.classList.contains("popup-show")) border = "27px 27px 0 0";
+            setDisplayAndBorderRadius(display, border);
+        }
+        function setDisplayAndBorderRadius(display, radius) {
+            searchOptions.style.display = display;
+            searchInput.style.borderRadius = radius;
+        }
+        function getOptionsHtml(options) {
+            return options.map((option => {
+                const regex = new RegExp(searchValue, "gi");
+                const optionTitle = option.title.replace(regex, `<span class="bg">${searchValue}</span>`);
+                return `<li data-tip-slug="${option.slug}" class="search-header__item"><span>${optionTitle}</span></li>`;
+            })).slice(0, 20).join("");
+        }
         searchOptions.addEventListener("click", (e => {
-            if (e.target.classList.contains("search-header__item")) scrollToSearchItem(e.target);
+            if (e.target.classList.contains("search-header__item")) initScrollToSelectedItem(e.target);
         }));
         searchForm.addEventListener("submit", (e => {
             e.preventDefault();
             let firstOption = searchOptions.querySelector(".search-header__item");
-            if (firstOption) scrollToSearchItem(firstOption);
+            if (firstOption) initScrollToSelectedItem(firstOption);
         }));
-        function scrollToSearchItem(item) {
-            searchInput.value = "";
-            let point_id = item.getAttribute("data-point"), subpoint_id = item.getAttribute("data-subpoint"), point = document.querySelector(`[data-id="${point_id}"]`);
-            if (!point.classList.contains("_spoller-active")) point.click();
+        function initScrollToSelectedItem(selected) {
+            let serviceSlug = selected.getAttribute("data-tip-slug"), service = document.querySelector(`[data-slug="${serviceSlug}"]`);
+            if (null == service) return;
+            cleanSearch();
+            let serviceGroup = findServiceGroup(service);
+            serviceGroup.click();
             setTimeout((() => {
-                if ("-1" != subpoint_id) {
-                    let subpoint = document.querySelector(`[data-id="${subpoint_id}"]`);
-                    subpoint.classList.add("_glow");
-                    gotoblock_gotoBlock(`[data-id="${subpoint_id}"]`, false, 500, window.innerHeight / 2 - subpoint.offsetHeight / 2);
-                    setTimeout((() => {
-                        subpoint.classList.remove("_glow");
-                    }), 5e3);
-                } else gotoblock_gotoBlock(`[data-id="${point_id}"]`, false, 500, window.innerHeight / 2 - point.offsetHeight / 2);
+                if (serviceGroup != service) service.classList.add("_glow");
+                gotoblock_gotoBlock(`[data-slug="${serviceSlug}"]`, false, 500, window.innerHeight / 2 - service.offsetHeight / 2);
             }), 500);
+        }
+        function cleanSearch() {
+            searchInput.value = "";
+            setDisplayAndBorderRadius("none", "50px");
+            closeSearchPopup();
+        }
+        function closeSearchPopup() {
             if (document.documentElement.classList.contains("popup-show")) modules_flsModules.popup.close("#popup-close");
         }
-        function getOptions(word, storage) {
-            return storage.filter((item => {
-                const regex = new RegExp(word, "gi");
-                return item.name.match(regex);
-            }));
+        function findServiceGroup(service) {
+            if (service.classList.contains("item-catalog__title")) return service; else return service.closest(".catalog__item").querySelector("button");
         }
-        function displayOptions() {
-            const options = getOptions(this.value, storage);
-            if (options.length > 0 && 0 !== this.value.trim().length) if (!document.documentElement.classList.contains("popup-show")) {
-                searchInput.style.cssText = "border-radius: 27px 27px 0 0;";
-                searchOptions.style.display = "block";
-            } else {
-                searchInput.style.cssText = "border-radius: 50px;";
-                searchOptions.style.display = "block";
-            } else {
-                searchInput.style.cssText = "border-radius: 50px;";
-                searchOptions.style.display = "none";
-            }
-            const html = options.map((item => {
-                const regex = new RegExp(this.value, "gi");
-                const itemName = item.name.replace(regex, `<span class="bg">${this.value}</span>`);
-                return `<li data-point="${item.point_id}" data-subpoint="${item.subpoint_id}" class="search-header__item"><span>${itemName}</span></li>`;
-            })).slice(0, 10).join("");
-            searchOptions.innerHTML = this.value ? html : null;
-        }
-        searchInput.addEventListener("input", displayOptions);
-        searchInput.addEventListener("focusout", (() => {
-            setTimeout((() => {
-                searchInput.style.cssText = "border-radius: 50px;";
-                searchOptions.style.display = "none";
-            }), 100);
-        }));
         window["FLS"] = false;
         isWebp();
         addTouchClass();

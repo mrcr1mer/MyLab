@@ -8,7 +8,7 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="format-detection" content="telephone=no">
-		<link rel="stylesheet" href="css/style.min.css?_v=20230217154830">
+		<link rel="stylesheet" href="css/style.min.css?_v=20230219032629">
 		<link rel="shortcut icon" href="favicon.ico">
 		<!-- <meta name="robots" content="noindex, nofollow"> -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +20,7 @@
 		<header class="header">
 			<div class="header__container">
 				<div class="header__items">
-					<a href="index.html" class="header__logo"><img src="img/logo.svg" alt=""></a>
+					<a href="#" class="header__logo"><img src="img/logo.svg" alt=""></a>
 					<a data-popup="#popup-search" href="#" class="header__item header__item_search _icon-search"></a>
 					<a href="#" data-goto-top="30" data-goto-header data-goto="#contacts" class="header__item _icon-phone"></a>
 					<a href="#" data-goto-top="30" data-goto-header data-goto="#location" class="header__item _icon-maps"></a>
@@ -29,7 +29,7 @@
 							<button type="submit" class="search-header__button _icon-search"></button>
 							<input autocomplete="off" type="search" name="search" placeholder="Поиск по катологу" class="search-header__input">
 						</form>
-						<ul data-da=".popup__list, 992, first" class="search-header__list">
+						<ul data-da=".popup__list, 992" class="search-header__list">
 						</ul>
 					</div>
 				</div>
@@ -65,7 +65,7 @@
 							<i class="info-mainblock__icon _icon-time"></i>
 							<h3 class="info-mainblock__title">Ежедневно, 09:00–18:00</h3>
 						</div>
-						<a target="_blank" href="https://wa.me/+77076545707" class="info-mainblock__item info-mainblock__item_dark">
+						<a title="Написать в WhatsApp" target="_blank" href="https://wa.me/+77076545707" class="info-mainblock__item info-mainblock__item_dark">
 							<i class="info-mainblock__icon _icon-delivery"></i>
 							<h3 class="info-mainblock__title">Выезд на дом</h3>
 						</a>
@@ -281,10 +281,10 @@
 					<h2 class="catalog__title title">Каталог</h2>
 					<ul data-one-spoller data-spollers class="catalog__items">
 						<li class="catalog__item item-catalog">
-							<button data-id="id1" type="button" data-spoller class="item-catalog__title _icon-arrow"><span>Гематологические и гемостазиологические исследования</span></button>
+							<button data-slug="gematologicheskie-i-gemostaziologicheskie-issledovaniya" type="button" data-spoller class="item-catalog__title _icon-arrow"><span>Гематологические и гемостазиологические исследования</span></button>
 							<div class="item-catalog__body">
 								<ul class="item-catalog__items">
-									<li class="item-catalog__item" data-id="sub1">
+									<li class="item-catalog__item" data-slug="obshij-analiz-krovi-lejkoformulatrombocitysoe">
 										<div class="item-catalog__name-research">Общий анализ крови (лейкоформула + тромбоциты + СОЭ)</div>
 										<div class="item-catalog__price">2000тг</div>
 									</li>
@@ -292,7 +292,7 @@
 							</div>
 						</li>
 						<li class="catalog__item item-catalog">
-							<button data-id="id2" type="button" data-spoller class="item-catalog__title _icon-arrow"><span>Коагулограмма стандарт 06-032: 2840 (КК 2080)</span></button>
+							<button data-slug="koagulogramma-standart-06-032-2840-kk-2080" type="button" data-spoller class="item-catalog__title _icon-arrow"><span>Коагулограмма стандарт 06-032: 2840 (КК 2080)</span></button>
 							<div class="item-catalog__body">
 								<ul class="item-catalog__items">
 									<li class="item-catalog__item">
@@ -303,7 +303,7 @@
 										<div class="item-catalog__name-research">АЧТВ</div>
 										<div class="item-catalog__price">800тг</div>
 									</li>
-									<li class="item-catalog__item" data-id="sub2">
+									<li class="item-catalog__item" data-slug="fibrinogen-po-klausu">
 										<div class="item-catalog__name-research">Фибриноген по Клаусу</div>
 										<div class="item-catalog__price">800тг</div>
 									</li>
@@ -319,7 +319,7 @@
 							</div>
 						</li>
 						<li class="catalog__item item-catalog">
-							<button data-id="id3" type="button" data-spoller class="item-catalog__title _icon-arrow"><span>Коагулограмма расширенная 06-001: 9260 (КК 7060)</span></button>
+							<button data-slug="koagulogramma-rasshirennaya-06-001-9260-kk-7060" type="button" data-spoller class="item-catalog__title _icon-arrow"><span>Коагулограмма расширенная 06-001: 9260 (КК 7060)</span></button>
 							<div class="item-catalog__body">
 								<ul class="item-catalog__items">
 									<li class="item-catalog__item">
@@ -327,7 +327,7 @@
 											индекс-Международное нормализованное отношение) </div>
 										<div class="item-catalog__price">800тг</div>
 									</li>
-									<li class="item-catalog__item" data-id="sub3">
+									<li class="item-catalog__item">
 										<div class="item-catalog__name-research">АЧТВ (Активированное частичное тромбопластиновое</div>
 										<div class="item-catalog__price">800тг</div>
 									</li>
@@ -335,7 +335,7 @@
 										<div class="item-catalog__name-research">Фибриноген по Клаусу</div>
 										<div class="item-catalog__price">800тг</div>
 									</li>
-									<li class="item-catalog__item">
+									<li class="item-catalog__item" data-slug="d-dimer">
 										<div class="item-catalog__name-research">D-димер</div>
 										<div class="item-catalog__price">5000тг</div>
 									</li>
@@ -363,7 +363,7 @@
 							</div>
 						</li>
 						<li class="catalog__item item-catalog">
-							<button data-id="id4" type="button" data-spoller class="item-catalog__title _icon-arrow"><span>Серологические исследования</span></button>
+							<button data-slug="id4" type="button" data-spoller class="item-catalog__title _icon-arrow"><span>Серологические исследования</span></button>
 							<div class="item-catalog__body">
 								<ul class="item-catalog__items">
 									<li class="item-catalog__item">
@@ -374,7 +374,7 @@
 										<div class="item-catalog__name-research">Определение группы крови + резус фактора</div>
 										<div class="item-catalog__price">2000тг</div>
 									</li>
-									<li class="item-catalog__item" data-id="sub4">
+									<li class="item-catalog__item" data-slug="sub4">
 										<div class="item-catalog__name-research">Диагностика Сифилиса: кровь на RW (Реакция Вассермана)</div>
 										<div class="item-catalog__price">2500тг</div>
 									</li>
@@ -386,7 +386,7 @@
 							</div>
 						</li>
 						<li class="catalog__item item-catalog">
-							<button data-id="id5" type="button" data-spoller class="item-catalog__title _icon-arrow"><span>Общеклинические исследования</span></button>
+							<button data-slug="id5" type="button" data-spoller class="item-catalog__title _icon-arrow"><span>Общеклинические исследования</span></button>
 							<div class="item-catalog__body">
 								<ul class="item-catalog__items">
 									<li class="item-catalog__item">
@@ -417,7 +417,7 @@
 										<div class="item-catalog__name-research">Глюкоза в моче</div>
 										<div class="item-catalog__price">1100тг</div>
 									</li>
-									<li class="item-catalog__item" data-id="sub5">
+									<li class="item-catalog__item" data-slug="sub5">
 										<div class="item-catalog__name-research">Мазок на степень чистоты + (Гн;трих) - без забора</div>
 										<div class="item-catalog__price">1500тг</div>
 									</li>
@@ -549,7 +549,7 @@
 							</div>
 						</section>
 					</div>
-					<section data-da=".information__column, 560, 1" class="location" id="location">
+					<section data-da=".information__column, 767, 1" class="location" id="location">
 						<div class="location__title title">Адрес</div>
 						<div class="location__body">
 							<div class="location__address _icon-location">ул. Озтюрка, 11А (подъезд 5)</div>
@@ -560,9 +560,9 @@
 									<a target="_blank" href="https://go.2gis.com/11jtzx" class="place-location__map"><picture><source srcset="img/maps/2gis.webp" type="image/webp"><img src="img/maps/2gis.png" alt=""></picture></a>
 									<a target="_blank" href="https://yandex.kz/maps/-/CCUCbNSy9B" class="place-location__map"><img src="img/maps/yandex.svg" alt=""></a>
 								</div>
-								<div class="location__map map" id="map">
-									<!-- <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Afb673035763d7e5f2b3e2c786a4c09e7d0a372cc5736127a74ac91a67336bae2&amp;source=constructor" width="100%" height="100%" frameborder="0" ></iframe> -->
-									<!-- <a class="dg-widget-link" href="http://2gis.kz/almaty/firm/70000001054857537/center/76.906138,43.232789/zoom/17?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=bigMap">Посмотреть на карте Алматы</a><div class="dg-widget-link"><a href="http://2gis.kz/almaty/center/76.906138,43.232789/zoom/17/routeTab/rsType/bus/to/76.906138,43.232789╎MY LAB, медицинская лаборатория?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=route">Найти проезд до MY LAB, медицинская лаборатория</a></div><script charset="utf-8" src="https://widgets.2gis.com/js/DGWidgetLoader.js?_v=20230217154830"></script><script charset="utf-8">new DGWidgetLoader({"width":'100%',"height":'100%',"borderColor":"#a3a3a3","pos":{"lat":43.232789,"lon":76.906138,"zoom":17},"opt":{"city":"almaty"},"org":[{"id":"70000001054857537"}]});</script><noscript style="color:#c00;font-size:16px;font-weight:bold;">Виджет карты использует JavaScript. Включите его в настройках вашего браузера.</noscript> -->
+								<div class="location__map" id="map">
+									<iframe class="iframe" src="https://yandex.ru/map-widget/v1/?um=constructor%3Afb673035763d7e5f2b3e2c786a4c09e7d0a372cc5736127a74ac91a67336bae2&amp;source=constructor" width="100%" height="100%" frameborder="0"></iframe>
+									<!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1453.4531707617864!2d76.90627437699032!3d43.232423281142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38836926077f3d33%3A0x5fd05ef0899ee685!2z0KLQsNC80YHQsNC7INCY0L3QstC10YHRgg!5e0!3m2!1sru!2skz!4v1676628128256!5m2!1sru!2skz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
 								</div>
 							</div>
 						</div>
@@ -732,8 +732,8 @@
 		</div>
 	</div>
 
-	<script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full&_v=20230217154830"></script>
-	<script defer src="js/app.min.js?_v=20230217154830"></script>
+	<!-- <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=basic&lazy=true&_v=20230219032629"></script> -->
+	<script defer src="js/app.min.js?_v=20230219032629"></script>
 </body>
 
 </html>
