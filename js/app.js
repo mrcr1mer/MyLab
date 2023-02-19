@@ -4532,7 +4532,6 @@
                 }
             }));
         }), {
-            threshold: 0,
             rootMargin: "500px"
         });
         const map = document.querySelector("#map .yandex-map");

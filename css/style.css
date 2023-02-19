@@ -3651,24 +3651,8 @@ button.swiper-pagination-bullet {
     background-color: #ff643d;
   }
 
-  .detailed-item-sales__btn:hover {
-    color: #F0F0F3;
-  }
-
-  .detailed-item-sales__btn:hover::before {
-    color: #F0F0F3;
-  }
-
   .contacts__link:hover {
     color: #FF833D;
-  }
-
-  .detailed-item-vacancies__btn:hover {
-    color: #F0F0F3;
-  }
-
-  .detailed-item-vacancies__btn:hover::before {
-    color: #F0F0F3;
   }
 
   .detailed-item-vacancies__link:hover {
