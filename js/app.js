@@ -725,6 +725,79 @@
             }
         }
         modules_flsModules.popup = new Popup({});
+        const iconBurger = document.querySelector(".icon-menu");
+        if (iconBurger) iconBurger.addEventListener("click", (() => {
+            menuOpenAndClose();
+        }));
+        function menuOpenAndClose() {
+            if (document.documentElement.classList.contains("menu-open")) iconBurger.classList.add("_reverse"); else iconBurger.classList.remove("_reverse");
+            document.documentElement.classList.toggle("lock");
+            document.documentElement.classList.toggle("menu-open");
+        }
+        let detailsStatusData = {}, detailCount = 0;
+        let statusPattern = {
+            body: null,
+            btn: null,
+            ready: true
+        };
+        function initDetailsModule() {
+            let details = document.querySelectorAll("[data-details]");
+            details.forEach((detail => {
+                initDetail(detail);
+            }));
+        }
+        function initDetail(detail) {
+            configureDetail(detail);
+            hideDetailsSpoilers(detail);
+            detail.addEventListener("click", handleBlockClick);
+        }
+        function configureDetail(detail) {
+            let id = `detail${detailCount}`;
+            detail.setAttribute("data-details", id);
+            detailsStatusData[id] = structuredClone(statusPattern);
+            detailCount++;
+        }
+        function hideDetailsSpoilers(detail) {
+            let spoilers = detail.querySelectorAll("[data-details-spoiler]");
+            spoilers.forEach((spoiler => {
+                _slideUp(spoiler, 0);
+            }));
+        }
+        function handleBlockClick(e) {
+            if (null != e.target.getAttribute("data-details-btn")) executeDetailBehavior(e.target);
+        }
+        function executeDetailBehavior(button) {
+            let detailBody = button.closest("[data-details-body]").querySelector("[data-details-spoiler]");
+            let detailId = button.closest("[data-details]").getAttribute("data-details");
+            if (false == detailsStatusData[detailId]["ready"]) return;
+            detailsStatusData[detailId]["ready"] = false;
+            if (detailBody) {
+                executeBodyBehavior(detailBody, detailId);
+                executeButtonBehavior(button, detailId);
+            }
+        }
+        function executeButtonBehavior(button, id) {
+            let prevBtn = detailsStatusData[id]["btn"];
+            button.classList.toggle("_active");
+            if (null != prevBtn) prevBtn.classList.remove("_active");
+            if (button.isEqualNode(prevBtn)) detailsStatusData[id]["btn"] = null; else detailsStatusData[id]["btn"] = button;
+        }
+        function executeBodyBehavior(body, id) {
+            let prevBody = detailsStatusData[id]["body"];
+            let delay = 500;
+            _slideToggle(body);
+            if (true != body.isEqualNode(prevBody)) {
+                delay *= 2;
+                setTimeout((() => {
+                    if (null != prevBody) _slideUp(prevBody, 500);
+                }), 500);
+                detailsStatusData[id]["body"] = body;
+            }
+            setTimeout((() => {
+                detailsStatusData[id]["ready"] = true;
+            }), delay);
+        }
+        initDetailsModule();
         var smooth_scroll_polyfills_min = __webpack_require__(2);
         let gotoblock_gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 0) => {
             const targetBlockElement = document.querySelector(targetBlock);
@@ -751,7 +824,7 @@
                     offset: offsetTop,
                     easing: "easeOutQuad"
                 };
-                document.documentElement.classList.contains("menu-open") ? menuClose() : null;
+                document.documentElement.classList.contains("menu-open") ? menuOpenAndClose() : null;
                 if ("undefined" !== typeof smooth_scroll_polyfills_min) (new smooth_scroll_polyfills_min).animateScroll(targetBlockElement, "", options); else {
                     let targetBlockElementPosition = targetBlockElement.getBoundingClientRect().top + scrollY;
                     targetBlockElementPosition = headerItemHeight ? targetBlockElementPosition - headerItemHeight : targetBlockElementPosition;
@@ -4219,11 +4292,11 @@
                         slidesPerView: 1,
                         spaceBetween: 15
                     },
-                    670: {
+                    680: {
                         slidesPerView: 2,
                         spaceBetween: 20
                     },
-                    1070: {
+                    1110: {
                         slidesPerView: 3,
                         spaceBetween: 30
                     }
@@ -4233,17 +4306,6 @@
                 modules: [ Pagination, Autoplay, Keyboard, Navigation, Grid ],
                 grabCursor: true,
                 speed: 800,
-                spaceBetween: 20,
-                slidesPerView: 3,
-                grid: {
-                    rows: 2,
-                    fill: "rows"
-                },
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
-                    dynamicBullets: true
-                },
                 autoplay: {
                     delay: 5e3,
                     stopOnLastSlide: false,
@@ -4253,9 +4315,40 @@
                     enabled: true,
                     onlyInViewport: true
                 },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                    dynamicBullets: true
+                },
                 navigation: {
                     prevEl: ".swiper-button-prev",
                     nextEl: ".swiper-button-next"
+                },
+                breakpoints: {
+                    320: {
+                        spaceBetween: 10,
+                        slidesPerView: 3,
+                        grid: {
+                            rows: 2,
+                            fill: "rows"
+                        }
+                    },
+                    621: {
+                        spaceBetween: 15,
+                        slidesPerView: 2,
+                        grid: {
+                            rows: 2,
+                            fill: "rows"
+                        }
+                    },
+                    850: {
+                        spaceBetween: 20,
+                        slidesPerView: 3,
+                        grid: {
+                            rows: 2,
+                            fill: "rows"
+                        }
+                    }
                 }
             });
             if (document.querySelector(".vacancies-swiper")) new core(".vacancies-swiper", {
@@ -4281,11 +4374,11 @@
                         slidesPerView: 1,
                         spaceBetween: 15
                     },
-                    670: {
+                    680: {
                         slidesPerView: 2,
                         spaceBetween: 20
                     },
-                    1070: {
+                    1120: {
                         slidesPerView: 3,
                         spaceBetween: 30
                     }
@@ -4430,76 +4523,20 @@
         }
         const da = new DynamicAdapt("max");
         da.init();
-        const iconBurger = document.querySelector(".icon-menu");
-        if (iconBurger) iconBurger.addEventListener("click", (() => {
-            if (document.documentElement.classList.contains("menu-open")) iconBurger.classList.add("_reverse"); else iconBurger.classList.remove("_reverse");
-            document.documentElement.classList.toggle("lock");
-            document.documentElement.classList.toggle("menu-open");
-        }));
-        let detailsStatusData = {}, detailCount = 0;
-        let statusPattern = {
-            body: null,
-            btn: null,
-            ready: true
-        };
-        function initDetailsModule() {
-            let details = document.querySelectorAll("[data-details]");
-            details.forEach((detail => {
-                initDetail(detail);
+        const mapObserver = new IntersectionObserver(((entries, observer) => {
+            entries.forEach((entry => {
+                if (entry.isIntersecting) {
+                    entry.target.src = entry.target.dataset.src;
+                    observer.unobserve(entry.target);
+                    entry.target.removeAttribute("data-src");
+                }
             }));
-        }
-        function initDetail(detail) {
-            configureDetail(detail);
-            hideDetailsSpoilers(detail);
-            detail.addEventListener("click", handleBlockClick);
-        }
-        function configureDetail(detail) {
-            let id = `detail${detailCount}`;
-            detail.setAttribute("data-details", id);
-            detailsStatusData[id] = structuredClone(statusPattern);
-            detailCount++;
-        }
-        function hideDetailsSpoilers(detail) {
-            let spoilers = detail.querySelectorAll("[data-details-spoiler]");
-            spoilers.forEach((spoiler => {
-                _slideUp(spoiler, 0);
-            }));
-        }
-        function handleBlockClick(e) {
-            if (null != e.target.getAttribute("data-details-btn")) executeDetailBehavior(e.target);
-        }
-        function executeDetailBehavior(button) {
-            let detailBody = button.closest("[data-details-body]").querySelector("[data-details-spoiler]");
-            let detailId = button.closest("[data-details]").getAttribute("data-details");
-            if (false == detailsStatusData[detailId]["ready"]) return;
-            detailsStatusData[detailId]["ready"] = false;
-            if (detailBody) {
-                executeBodyBehavior(detailBody, detailId);
-                executeButtonBehavior(button, detailId);
-            }
-        }
-        function executeButtonBehavior(button, id) {
-            let prevBtn = detailsStatusData[id]["btn"];
-            button.classList.toggle("_active");
-            if (null != prevBtn) prevBtn.classList.remove("_active");
-            if (button.isEqualNode(prevBtn)) detailsStatusData[id]["btn"] = null; else detailsStatusData[id]["btn"] = button;
-        }
-        function executeBodyBehavior(body, id) {
-            let prevBody = detailsStatusData[id]["body"];
-            let delay = 500;
-            _slideToggle(body);
-            if (true != body.isEqualNode(prevBody)) {
-                delay *= 2;
-                setTimeout((() => {
-                    if (null != prevBody) _slideUp(prevBody, 500);
-                }), 500);
-                detailsStatusData[id]["body"] = body;
-            }
-            setTimeout((() => {
-                detailsStatusData[id]["ready"] = true;
-            }), delay);
-        }
-        initDetailsModule();
+        }), {
+            threshold: 0,
+            rootMargin: "500px"
+        });
+        const map = document.querySelector("#map .yandex-map");
+        if (map) mapObserver.observe(map);
         let storage = [];
         storage = [ {
             title: "Общий анализ крови (лейкоформула + тромбоциты + СОЭ)",
@@ -4582,10 +4619,13 @@
             }), 100);
         }));
         searchInput.addEventListener("input", (e => {
-            searchValue = e.target.value;
+            searchValue = escapeRegex(e.target.value);
             let options = getOptions();
             displayOptions(options);
         }));
+        function escapeRegex(string) {
+            return string.replace(/[/\-\\^$*+?.()|[\]{}]/g, "\\$&");
+        }
         function getOptions() {
             if (0 == searchValue.length) return [];
             const regex = new RegExp(searchValue, "gi");
@@ -4606,8 +4646,8 @@
         }
         function getOptionsHtml(options) {
             return options.map((option => {
-                const regex = new RegExp(searchValue, "gi");
-                const optionTitle = option.title.replace(regex, `<span class="bg">${searchValue}</span>`);
+                const regex = new RegExp(`(${searchValue})`, "gi");
+                const optionTitle = option.title.replace(regex, `<span class="bg">$1</span>`);
                 return `<li data-tip-slug="${option.slug}" class="search-header__item"><span>${optionTitle}</span></li>`;
             })).slice(0, 20).join("");
         }
@@ -4624,9 +4664,9 @@
             if (null == service) return;
             cleanSearch();
             let serviceGroup = findServiceGroup(service);
-            serviceGroup.click();
+            if (false == serviceGroup.classList.contains("_spoller-active")) serviceGroup.click();
             setTimeout((() => {
-                if (serviceGroup != service) service.classList.add("_glow");
+                if (serviceGroup != service) highlightService(service, 5e3);
                 gotoblock_gotoBlock(`[data-slug="${serviceSlug}"]`, false, 500, window.innerHeight / 2 - service.offsetHeight / 2);
             }), 500);
         }
@@ -4640,6 +4680,12 @@
         }
         function findServiceGroup(service) {
             if (service.classList.contains("item-catalog__title")) return service; else return service.closest(".catalog__item").querySelector("button");
+        }
+        function highlightService(service, duration = 500) {
+            service.classList.add("_glow");
+            setTimeout((() => {
+                service.classList.remove("_glow");
+            }), duration);
         }
         window["FLS"] = false;
         isWebp();
