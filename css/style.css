@@ -1486,6 +1486,7 @@ body::after {
 }
 
 .location__body {
+  padding: 1.5625rem;
   -webkit-box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.25);
   border-radius: 1.625rem;
@@ -1705,6 +1706,7 @@ body::after {
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
+  text-decoration: underline;
 }
 
 .swiper {
@@ -2073,10 +2075,6 @@ button.swiper-pagination-bullet {
     font-size: 1.875rem;
   }
 
-  .location__body {
-    padding: 1.5625rem;
-  }
-
   .location__address {
     margin-bottom: 1.5625rem;
   }
@@ -2425,10 +2423,6 @@ button.swiper-pagination-bullet {
     font-size: 1.5rem;
   }
 
-  .location__body {
-    padding: 0.9375rem;
-  }
-
   .location__address {
     margin-bottom: 0.9375rem;
   }
@@ -2592,7 +2586,7 @@ button.swiper-pagination-bullet {
   }
 
   .location__body {
-    padding-bottom: 0rem;
+    padding: 1.25rem 1.25rem 0;
   }
 
   .location__map {
@@ -2747,6 +2741,10 @@ button.swiper-pagination-bullet {
 
   .contacts__item:not(:last-child) {
     margin-bottom: 0.9375rem;
+  }
+
+  .location__body {
+    padding: 0.9375rem 0.9375rem 0;
   }
 
   .item-vacancies__info {
@@ -2964,18 +2962,6 @@ button.swiper-pagination-bullet {
 @supports not (font-size: clamp( 1.5rem , 1.3834951456rem  +  0.5825242718vw , 1.875rem )) {
     .contacts__link::before {
       font-size: calc(1.5rem + 0.375 * (100vw - 20rem) / 64.375);
-    }
-}
-
-@supports (padding: clamp( 0.9375rem , 0.7433252427rem  +  0.9708737864vw , 1.5625rem )) {
-    .location__body {
-      padding: clamp( 0.9375rem , 0.7433252427rem  +  0.9708737864vw , 1.5625rem );
-    }
-}
-
-@supports not (padding: clamp( 0.9375rem , 0.7433252427rem  +  0.9708737864vw , 1.5625rem )) {
-    .location__body {
-      padding: calc(0.9375rem + 0.625 * (100vw - 20rem) / 64.375);
     }
 }
 

@@ -4279,7 +4279,7 @@
                     dynamicBullets: true
                 },
                 autoplay: {
-                    delay: 5e3,
+                    delay: 8e3,
                     stopOnLastSlide: false,
                     disableOnInteraction: false
                 },
@@ -4361,7 +4361,7 @@
                     dynamicBullets: true
                 },
                 autoplay: {
-                    delay: 5e3,
+                    delay: 8e3,
                     stopOnLastSlide: false,
                     disableOnInteraction: false
                 },
