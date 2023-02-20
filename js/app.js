@@ -4274,7 +4274,7 @@
                 grabCursor: true,
                 speed: 800,
                 pagination: {
-                    el: ".swiper-pagination",
+                    el: ".sales-swiper-pagination",
                     clickable: true,
                     dynamicBullets: true
                 },
@@ -4316,13 +4316,13 @@
                     onlyInViewport: true
                 },
                 pagination: {
-                    el: ".swiper-pagination",
+                    el: ".partners-swiper-pagination",
                     clickable: true,
                     dynamicBullets: true
                 },
                 navigation: {
-                    prevEl: ".swiper-button-prev",
-                    nextEl: ".swiper-button-next"
+                    prevEl: ".partners-swiper-button-prev",
+                    nextEl: ".partners-swiper-button-next"
                 },
                 breakpoints: {
                     320: {
@@ -4356,7 +4356,7 @@
                 grabCursor: true,
                 speed: 800,
                 pagination: {
-                    el: ".swiper-pagination",
+                    el: ".vacancies-swiper-pagination",
                     clickable: true,
                     dynamicBullets: true
                 },
@@ -4532,7 +4532,7 @@
                 }
             }));
         }), {
-            rootMargin: "500px"
+            rootMargin: "1000px"
         });
         const map = document.querySelector("#map .iframe-map");
         if (map) mapObserver.observe(map);
