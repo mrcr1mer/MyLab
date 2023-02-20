@@ -4678,7 +4678,7 @@
             if (document.documentElement.classList.contains("popup-show")) modules_flsModules.popup.close("#popup-close");
         }
         function findServiceGroup(service) {
-            if (service.classList.contains("item-catalog__title")) return service; else return service.closest(".catalog__item").querySelector("button");
+            if (service.classList.contains("item-catalog__title")) return service; else return service.closest(".catalog__item").querySelector("h3");
         }
         function highlightService(service, duration = 500) {
             service.classList.add("_glow");
