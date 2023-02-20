@@ -4534,7 +4534,7 @@
         }), {
             rootMargin: "500px"
         });
-        const map = document.querySelector("#map .yandex-map");
+        const map = document.querySelector("#map .iframe-map");
         if (map) mapObserver.observe(map);
         let storage = [];
         storage = [ {
