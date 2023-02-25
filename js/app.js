@@ -230,6 +230,13 @@
         function addTouchClass() {
             if (isMobile.any()) document.documentElement.classList.add("touch");
         }
+        function addLoadedClass() {
+            window.addEventListener("load", (function() {
+                setTimeout((function() {
+                    document.documentElement.classList.add("loaded");
+                }), 500);
+            }));
+        }
         function getHash() {
             if (location.hash) return location.hash.replace("#", "");
         }
@@ -4689,6 +4696,7 @@
         window["FLS"] = false;
         isWebp();
         addTouchClass();
+        addLoadedClass();
         fullVHfix();
         spollers();
         pageNavigation();
