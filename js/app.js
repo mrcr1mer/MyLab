@@ -233,6 +233,7 @@
         function addLoadedClass() {
             window.addEventListener("load", (function() {
                 setTimeout((function() {
+                    document.documentElement.classList.remove("loading");
                     document.documentElement.classList.add("loaded");
                 }), 500);
             }));
@@ -738,7 +739,6 @@
         }));
         function menuOpenAndClose() {
             if (document.documentElement.classList.contains("menu-open")) iconBurger.classList.add("_reverse"); else iconBurger.classList.remove("_reverse");
-            document.documentElement.classList.toggle("lock");
             document.documentElement.classList.toggle("menu-open");
         }
         let detailsStatusData = {}, detailCount = 0;

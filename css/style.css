@@ -168,9 +168,79 @@ h6 {
   font-size: inherit;
 }
 
+.preloader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: #fff;
+  z-index: 1000;
+}
+
+.loaded .preloader {
+  -webkit-transition: all 0.7s ease;
+  -o-transition: all 0.7s ease;
+  transition: all 0.7s ease;
+  opacity: 0;
+  visibility: hidden;
+  z-index: -1;
+}
+
+.preloader__circle {
+  position: relative;
+  height: 60px;
+  width: 60px;
+}
+
+.preloader__spinner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  border: 7px solid #ff833d;
+  border-top-color: transparent;
+  border-radius: 50%;
+  -webkit-animation: preloaderRotate 1s linear infinite;
+          animation: preloaderRotate 1s linear infinite;
+}
+
+@-webkit-keyframes preloaderRotate {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+            transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes preloaderRotate {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+            transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
 body {
   font-weight: 600;
-  overflow: hidden;
 }
 
 .lock body {
@@ -181,8 +251,8 @@ body {
       overscroll-behavior: none;
 }
 
-.loaded body {
-  overflow: visible;
+.loading body {
+  overflow: hidden;
 }
 
 .wrapper {
