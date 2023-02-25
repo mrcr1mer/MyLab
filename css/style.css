@@ -243,14 +243,6 @@ body {
   font-weight: 600;
 }
 
-.lock body {
-  overflow: hidden;
-  -ms-touch-action: none;
-      touch-action: none;
-  -ms-scroll-chaining: none;
-      overscroll-behavior: none;
-}
-
 .loading body {
   overflow: hidden;
 }
@@ -2236,6 +2228,14 @@ button.swiper-pagination-bullet {
 }
 
 @media (max-width: 62em) {
+  .lock body {
+    overflow: hidden;
+    -ms-touch-action: none;
+        touch-action: none;
+    -ms-scroll-chaining: none;
+        overscroll-behavior: none;
+  }
+
   #map {
     height: auto;
     padding-bottom: 62%;
